@@ -25,12 +25,13 @@ app.get('/search', function(req, res) {
             var formattedItems = [];
 
             for(var i = 0; i < preFormattedItems.length; i++){
+              try{
                 console.log(preFormattedItems[i]);
 
                 var game = {};
                 game.title = preFormattedItems[i].name[0].$.value || undefined;
 
-                if(typeof preFormattedItems[i].yearspublished === 'Array' && preFormattedItems[i].yearpublished.length > 0){
+                if(preFormattedItems[i].yearpublished != null && preFormattedItems[i].yearpublished.length > 0){
                   game.yearPublished = preFormattedItems[i].yearpublished[0].$.value || '';
                 }
                 else {
@@ -40,6 +41,10 @@ app.get('/search', function(req, res) {
                 if(game.title != undefined){
                   formattedItems.push(game);
                 }
+              }
+              catch(e){
+                console.log('error');
+              }
             }
 
             res.write(JSON.stringify(formattedItems));
@@ -54,5 +59,5 @@ app.get('/search', function(req, res) {
 });
 
 app.listen(app.get('port'), function() {
-  console.log("BGG API running at localhost:" + app.get('port'))
+  console.log("BGG Middleware running at localhost:" + app.get('port'))
 })

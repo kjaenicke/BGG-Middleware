@@ -1,5 +1,5 @@
 {
-  "name": "bgg-api",
+  "name": "BGG-Middleware",
   "version": "0.1.0",
   "description": "BGG API Wrapper",
   "main": "index.js",
@@ -16,11 +16,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/"
+    "url": "https://github.com/kjaenicke/BGG-Middleware.git"
   },
-  "author": "Mark Pundsack",
-  "contributors": [
-    "Keenan Jaenicke"
-  ],
+  "author": "Keenan Jaenicke",
+  "contributors": [],
   "license": "MIT"
 }
