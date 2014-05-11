@@ -1,6 +1,7 @@
 var express = require('express')
 var app = express();
 var request = require('request');
+var parseString = require('xml2js').parseString;
 
 app.set('port', (process.env.PORT || 1337))
 app.use(express.static(__dirname + '/public'))
@@ -15,10 +16,26 @@ app.get('/search', function(req, res) {
   }
   else{
     request.get({
-      url: 'http://www.boardgamegeek.com/xmlapi2/search?query="' + search + '"'
+      url: 'http://boardgamegeek.com/xmlapi2/search?query="' + search + '"'
     }, function(error, response){
         if(!error){
-          res.send('200', response.body);
+          //convert xml to json
+          parseString(response.body, function (err, result) {
+            var preFormattedItems = result.items.item;
+            var formattedItems = [];
+
+            for(var i = 0; i < preFormattedItems.length; i++){
+                console.log(preFormattedItems[i]);
+
+                formattedItems.push({
+                  title: preFormattedItems[i].name[0].$.value,
+                  yearPublished: preFormattedItems[i].yearpublished[0].$.value
+                });
+            }
+
+            res.write(JSON.stringify(formattedItems));
+            res.end();
+          });
         }
         else{
           throw new Error('500', error);
