@@ -27,10 +27,19 @@ app.get('/search', function(req, res) {
             for(var i = 0; i < preFormattedItems.length; i++){
                 console.log(preFormattedItems[i]);
 
-                formattedItems.push({
-                  title: preFormattedItems[i].name[0].$.value,
-                  yearPublished: preFormattedItems[i].yearpublished[0].$.value
-                });
+                var game = {};
+                game.title = preFormattedItems[i].name[0].$.value || undefined;
+
+                if(typeof preFormattedItems[i].yearspublished === 'Array' && preFormattedItems[i].yearpublished.length > 0){
+                  game.yearPublished = preFormattedItems[i].yearpublished[0].$.value || '';
+                }
+                else {
+                  game.yearPublished = ''
+                }
+
+                if(game.title != undefined){
+                  formattedItems.push(game);
+                }
             }
 
             res.write(JSON.stringify(formattedItems));
