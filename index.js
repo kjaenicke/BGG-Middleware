@@ -17,6 +17,7 @@ app.get('/search', function(req, res) {
     res.end();
   }
   else{
+    // We might consider additional parameters like 'gametype' so that users can specify whether they are looking for board games, expansions, video games, etc.
     request.get({
       url: 'http://boardgamegeek.com/xmlapi2/search?query="' + search + '"'
     }, function(error, response){
@@ -33,14 +34,27 @@ app.get('/search', function(req, res) {
                     var game = {};
                     game.title = results[i].name[0].$.value || undefined;
 
+                    // Year published
                     if(results[i].yearpublished && results[i].yearpublished.length > 0){
                       game.yearPublished = results[i].yearpublished[0].$.value || '';
                     }
 
+                    // Game type
+                    if(results[i].$.type && results[i].$.type.length > 0){
+                      game.type = results[i].$.type || '';
+                    }
+
+                    // Game ID - CRUCIAL
+                    if(results[i].$.id && results[i].$.id.length > 0){
+                      game.id = results[i].$.id || '';
+                    }
+
+                    // Game Title
                     if(game.title != undefined){
                       payload.games.push(game);
                     }
 
+                    // Year published
                     if(!(search == game.title)){
                       game.matchPercentage = (100 - (game.title.length - StringComparison.getEditDistance(search, game.title) / game.title.length));
                     }
@@ -49,7 +63,7 @@ app.get('/search', function(req, res) {
                     }
                 }
 
-                payload.games.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);}); 
+                payload.games.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);});
 
                 payload.totalResults = payload.games.length;
               }
