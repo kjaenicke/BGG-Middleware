@@ -12,42 +12,52 @@ app.get('/search', function(req, res) {
 
   if(!search){
     throw new Error('Empty search error');
-    res.send('500', 'Empty search parameter');
+    res.send('500', 'Search parameter not found');
+    res.end();
   }
   else{
     request.get({
       url: 'http://boardgamegeek.com/xmlapi2/search?query="' + search + '"'
     }, function(error, response){
         if(!error){
-          //convert xml to json
-          parseString(response.body, function (err, result) {
-            var preFormattedItems = result.items.item;
-            var formattedItems = [];
+          try{
+            var payload = { searchText: search, games: [], totalResults: 0 };
 
-            for(var i = 0; i < preFormattedItems.length; i++){
-                console.log(preFormattedItems[i]);
+            //convert xml to json
+            parseString(response.body, function (err, data) {
+              if(data.items.item){
+                var results = data.items.item;
 
-                var game = {};
-                game.title = preFormattedItems[i].name[0].$.value || undefined;
+                for(var i = 0; i < results.length; i++){
+                    var game = {};
+                    game.title = results[i].name[0].$.value || undefined;
 
-                if(typeof preFormattedItems[i].yearspublished === 'Array' && preFormattedItems[i].yearpublished.length > 0){
-                  game.yearPublished = preFormattedItems[i].yearpublished[0].$.value || '';
+                    if(results[i].yearpublished && results[i].yearpublished.length > 0){
+                      game.yearPublished = results[i].yearpublished[0].$.value || '';
+                    }
+
+                    if(game.title != undefined){
+                      payload.games.push(game);
+                    }
                 }
-                else {
-                  game.yearPublished = ''
-                }
 
-                if(game.title != undefined){
-                  formattedItems.push(game);
-                }
-            }
+                payload.totalResults = payload.games.length;
+              }
 
-            res.write(JSON.stringify(formattedItems));
+              res.write(JSON.stringify(payload));
+              res.end();
+            });
+          }
+          catch (e){
+            throw new Error(e);
+            res.send('500');
             res.end();
-          });
+          }
         }
         else{
-          throw new Error('500', error);
+          throw new Error(error);
+          res.send('500');
+          res.end();
         }
     });
   }
