@@ -2,6 +2,7 @@ var express = require('express')
 var app = express();
 var request = require('request');
 var parseString = require('xml2js').parseString;
+var StringComparison = require('./StringComparison');
 
 app.set('port', (process.env.PORT || 1337))
 app.use(express.static(__dirname + '/public'))
@@ -39,7 +40,16 @@ app.get('/search', function(req, res) {
                     if(game.title != undefined){
                       payload.games.push(game);
                     }
+
+                    if(!(search == game.title)){
+                      game.matchPercentage = (100 - (game.title.length - StringComparison.getEditDistance(search, game.title) / game.title.length));
+                    }
+                    else{
+                      game.matchPercentage = 100;
+                    }
                 }
+
+                payload.games.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);}); 
 
                 payload.totalResults = payload.games.length;
               }
