@@ -1,11 +1,11 @@
-var express = require('express')
+var express = require('express');
 var app = express();
 var request = require('request');
 var parseString = require('xml2js').parseString;
-var StringComparison = require('./StringComparison');
+var StringComparison = require('./utils/StringComparison');
 
-app.set('port', (process.env.PORT || 1337))
-app.use(express.static(__dirname + '/public'))
+app.set('port', (process.env.PORT || 1337));
+app.use(express.static(__dirname + '/public'));
 
 
 ///////////////////////////////////////
@@ -18,9 +18,9 @@ app.get('/search', function(req, res) {
   var limit              = req.query.limit || -1;
 
   if(!search){
-    throw new Error('Empty search error');
     res.send('500', 'Search parameter not found');
     res.end();
+    throw new Error('Empty search error');
   }
   else{
     // We might consider additional parameters like 'gametype' so that users can specify whether they are looking for board games, expansions, video games, etc.
@@ -56,12 +56,12 @@ app.get('/search', function(req, res) {
                     }
 
                     // Game Title
-                    if((game.title != undefined && typeFilter == false) || (typeFilter && (typeFilter == game.type))){
+                    if((game.title !== undefined && typeFilter === false) || (typeFilter && (typeFilter === game.type))){
                       payload.games.push(game);
                     }
 
                     // Calculate search string likeness to results (le magics)
-                    if(!(search == game.title)){
+                    if(search !== game.title){
                       if(game.title.length > search.length){
                         game.matchPercentage = (100 - (game.title.length - StringComparison.getEditDistance(search, game.title) / game.title.length));
                       }
@@ -91,15 +91,15 @@ app.get('/search', function(req, res) {
             });
           }
           catch (e){
-            throw new Error(e);
             res.send('500');
             res.end();
+            throw new Error(e);
           }
         }
         else{
-          throw new Error(error);
           res.send('500');
           res.end();
+          throw new Error(error);
         }
     });
   }
@@ -109,5 +109,5 @@ app.get('/search', function(req, res) {
 ///////////////////////////////////////
 
 app.listen(app.get('port'), function() {
-  console.log("BGG API running at localhost:" + app.get('port'))
-})
+  console.log("BGG API running at localhost:" + app.get('port'));
+});
