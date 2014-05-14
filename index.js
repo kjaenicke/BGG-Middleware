@@ -7,9 +7,15 @@ var StringComparison = require('./StringComparison');
 app.set('port', (process.env.PORT || 1337))
 app.use(express.static(__dirname + '/public'))
 
+
+///////////////////////////////////////
+//  BASIC TEXT SEARCH
+///////////////////////////////////////
 app.get('/search', function(req, res) {
   //get querystring params passed in
-  var search = req.query.searchTerms || '';
+  var search             = req.query.searchTerms || '';
+  var typeFilter         = req.query.filter || false;
+  var limit              = req.query.limit || -1;
 
   if(!search){
     throw new Error('Empty search error');
@@ -50,21 +56,33 @@ app.get('/search', function(req, res) {
                     }
 
                     // Game Title
-                    if(game.title != undefined){
+                    if((game.title != undefined && typeFilter == false) || (typeFilter && (typeFilter == game.type))){
                       payload.games.push(game);
                     }
 
-                    // Year published
+                    // Calculate search string likeness to results (le magics)
                     if(!(search == game.title)){
-                      game.matchPercentage = (100 - (game.title.length - StringComparison.getEditDistance(search, game.title) / game.title.length));
+                      if(game.title.length > search.length){
+                        game.matchPercentage = (100 - (game.title.length - StringComparison.getEditDistance(search, game.title) / game.title.length));
+                      }
+                      else{
+                        game.matchPercentage = (100 - (search.length - StringComparison.getEditDistance(search, game.title) / search.length));
+                      }
                     }
                     else{
                       game.matchPercentage = 100;
                     }
                 }
 
+                //once we have the title likeness calculated, sort in descending order
                 payload.games.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);});
 
+                //limit results if parameter exists
+                if(limit != -1){
+                  payload.games = payload.games.slice(0, parseInt(limit));
+                }
+
+                //set total results
                 payload.totalResults = payload.games.length;
               }
 
@@ -86,6 +104,9 @@ app.get('/search', function(req, res) {
     });
   }
 });
+///////////////////////////////////////
+//  END BASIC TEXT SEARCH
+///////////////////////////////////////
 
 app.listen(app.get('port'), function() {
   console.log("BGG API running at localhost:" + app.get('port'))
