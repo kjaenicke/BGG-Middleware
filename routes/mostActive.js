@@ -1,6 +1,4 @@
-var parseString = require('xml2js').parseString;
-
-module.exports = function(app, request){
+module.exports = function(app, request, parseString){
   app.get('/mostActive', function(req, res){
     //get querystring params passed in
     var type  = req.query.type || '';

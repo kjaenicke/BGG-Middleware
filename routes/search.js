@@ -1,7 +1,6 @@
-var parseString = require('xml2js').parseString;
 var StringComparison = require('../utils/StringComparison');
 
-module.exports = function(app, request) {
+module.exports = function(app, request, parseString) {
   app.get('/search', function(req, res){
     //get querystring params passed in
     var search             = req.query.searchTerms || '';
