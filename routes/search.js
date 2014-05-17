@@ -19,7 +19,7 @@ module.exports = function(app, request, parseString) {
       }, function(error, response){
           if(!error){
             try{
-              var payload = { searchText: search, games: [], totalResults: 0 };
+              var games = [];
 
               //convert xml to json
               parseString(response.body, function (err, data) {
@@ -47,7 +47,7 @@ module.exports = function(app, request, parseString) {
 
                       // Game Title
                       if((game.title !== undefined && typeFilter === false) || (typeFilter && (typeFilter === game.type))){
-                        payload.games.push(game);
+                        games.push(game);
                       }
 
                       // Calculate search string likeness to results (le magics)
@@ -65,18 +65,18 @@ module.exports = function(app, request, parseString) {
                   }
 
                   //once we have the title likeness calculated, sort in descending order
-                  payload.games.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);});
+                  games.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);});
 
                   //limit results if parameter exists
                   if(limit != -1){
-                    payload.games = payload.games.slice(0, parseInt(limit));
+                    games = games.slice(0, parseInt(limit));
                   }
 
                   //set total results
-                  payload.totalResults = payload.games.length;
+                  //payload.totalResults = payload.games.length;
                 }
 
-                res.write(JSON.stringify(payload));
+                res.write(JSON.stringify(games));
                 res.end();
               });
             }
