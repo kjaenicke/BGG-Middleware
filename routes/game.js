@@ -1,3 +1,5 @@
+var ent = require('ent');
+
 module.exports = function(app, request, parseString){
   //simple view
   app.get('/game', function(req, res){
@@ -36,7 +38,7 @@ module.exports = function(app, request, parseString){
                   }
 
                   //game description
-                  game.description = data.description[0];
+                  game.description = ent.decode(data.description[0].replace(/(<([^>]+)>)/ig,""));
 
                   //URL for game's image
                   game.thumbURL = data.thumbnail[0];
@@ -102,7 +104,7 @@ module.exports = function(app, request, parseString){
                   }
 
                   //game description
-                  game.description = data.description[0];
+                  game.description = ent.decode(data.description[0].replace(/(<([^>]+)>)/ig,""));
 
                   //year published
                   game.yearPublished = data.yearpublished[0];

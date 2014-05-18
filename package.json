@@ -9,7 +9,8 @@
   "dependencies": {
     "express": "^4.0.0",
     "request": "*",
-    "xml2js" : "*"
+    "xml2js" : "*",
+    "ent": "2.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
