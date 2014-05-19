@@ -15,7 +15,7 @@ module.exports = function(app, request, parseString){
       }, function(error, response){
           if(!error){
             try{
-              var payload = { games: [], totalResults: 0 };
+              var games = [];
 
               //convert xml to json
               parseString(response.body, function (err, data) {
@@ -41,19 +41,17 @@ module.exports = function(app, request, parseString){
                         game.id = results[i].$.id || '';
                       }
 
-                      payload.games.push(game);
+                      games.push(game);
                   }
 
                   //limit results if parameter exists
                   if(limit != -1){
-                    payload.games = payload.games.slice(0, parseInt(limit));
+                    games = games.slice(0, parseInt(limit));
                   }
 
-                  //set total results
-                  payload.totalResults = payload.games.length;
                 }
 
-                res.write(JSON.stringify(payload));
+                res.write(JSON.stringify(games));
                 res.end();
               });
             }
