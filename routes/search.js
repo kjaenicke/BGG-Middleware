@@ -69,7 +69,7 @@ module.exports = function(app, request, parseString) {
 
                   //limit results if parameter exists
                   if(limit != -1){
-                    games = games.slice(0, parseInt(limit));
+                    games = games.slice(0, parseInt(limit, 10));
                   }
 
                   //set total results
