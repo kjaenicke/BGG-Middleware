@@ -79,7 +79,7 @@ module.exports = function(app, request, parseString){
     }
     else{
       request.get({
-        url: 'http://boardgamegeek.com/xmlapi/game/' + id
+        url: 'http://boardgamegeek.com/xmlapi/game/' + id + '&comments=1&stats=1'
       }, function(error, response){
           if(!error){
             try{
@@ -90,7 +90,7 @@ module.exports = function(app, request, parseString){
                 data = data.boardgames.boardgame[0];
 
                 if(data){
-                  console.log(data);
+                  //console.log(data);
                   //gameID
                   game.id = id;
 
@@ -129,6 +129,21 @@ module.exports = function(app, request, parseString){
 
                   //URL for game's image
                   game.thumbURL = data.thumbnail[0];
+
+                  //comnts
+                  game.comments = [];
+                  for(var i = 0; i < data.comment.length; i++){
+                    game.comments.push(data.comment[i]._);
+                  }
+
+                  console.log(data.statistics);
+
+
+                  for(var s = 0; s < data.statistics.length; s++){
+                      // if(data.statistics[s].$ && data.statistics[s].$.primary){
+                        game.rating = data.statistics[s].ratings[0].average[0];
+                      // }
+                  }
 
                   res.write(JSON.stringify(game));
                   res.end();
