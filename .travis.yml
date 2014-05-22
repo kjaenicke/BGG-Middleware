@@ -7,6 +7,6 @@ before_script: grunt
 notifications:
   email: false
 deploy:
-  provide: heroku
+  provider: heroku
   api_key: "404ff284-b522-4ee5-99bf-99b54e32a66a"
   app: "powerful-cove-3241"
