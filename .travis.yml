@@ -9,3 +9,4 @@ notifications:
 deploy:
   provide: heroku
   api_key: "404ff284-b522-4ee5-99bf-99b54e32a66a"
+  app: "powerful-cove-3241"
