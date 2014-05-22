@@ -132,8 +132,8 @@ module.exports = function(app, request, parseString){
 
                   //comnts
                   game.comments = [];
-                  for(var i = 0; i < data.comment.length; i++){
-                    game.comments.push(data.comment[i]._);
+                  for(var c = 0; i < data.comment.length; c++){
+                    game.comments.push(data.comment[c]._);
                   }
 
                   console.log(data.statistics);
