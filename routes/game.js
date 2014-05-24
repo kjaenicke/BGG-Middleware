@@ -1,4 +1,5 @@
 var ent = require('ent');
+var StringComparison = require('../utils/StringComparison');
 
 module.exports = function(app, request, parseString){
   //simple view
@@ -135,8 +136,29 @@ module.exports = function(app, request, parseString){
                     game.publisher = data.boardgamepublisher[0]._ || '';
                   }
 
-                  //add theses in later...perhaps
                   game.expansions = [];
+                  if(data.boardgameexpansion){
+                    for(var x = 0; x < data.boardgameexpansion.length; x++){
+                      var expansion = {
+                        title: data.boardgameexpansion[x]._,
+                        id: data.boardgameexpansion[x].$.objectid
+                      };
+
+                      // Calculate search string likeness to results (le magics)
+                      if(game.title.length > expansion.title.length){
+                        expansion.matchPercentage = (100 - (game.title.length - StringComparison.getEditDistance(expansion.title, game.title) / game.title.length));
+                      }
+                      else{
+                        expansion.matchPercentage = (100 - (expansion.title.length - StringComparison.getEditDistance(expansion.title, game.title) / expansion.title.length));
+                      }
+
+                      game.expansions.push(expansion);
+
+                    }
+                  }
+
+                  game.expansions.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);});
+
 
                   //URL for game's image
                   if(data.thumbnail){

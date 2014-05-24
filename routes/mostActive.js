@@ -1,7 +1,7 @@
 module.exports = function(app, request, parseString){
   app.get('/mostActive', function(req, res){
     //get querystring params passed in
-    var type  = req.query.type || '';
+    var type  = req.query.type || 'boardgame';
     var limit = req.query.limit || -1;
 
     if(!type){
