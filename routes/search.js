@@ -15,7 +15,7 @@ module.exports = function(app, request, parseString) {
     else{
       // We might consider additional parameters like 'gametype' so that users can specify whether they are looking for board games, expansions, video games, etc.
       request.get({
-        url: 'http://boardgamegeek.com/xmlapi2/search?query="' + search + '"'
+        url: 'http://boardgamegeek.com/xmlapi2/search?query="' + search + '"' + '&type=boardgame, boardgameexpansion, videogame'
       }, function(error, response){
           if(!error){
             try{
@@ -51,7 +51,7 @@ module.exports = function(app, request, parseString) {
                       }
 
                       // Calculate search string likeness to results (le magics)
-                      if(search !== game.title){
+                      if(search.toUpperCase() !== game.title.toUpperCase()){
                         if(game.title.length > search.length){
                           game.matchPercentage = (100 - (game.title.length - StringComparison.getEditDistance(search, game.title) / game.title.length));
                         }
