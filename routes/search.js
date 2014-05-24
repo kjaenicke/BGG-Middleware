@@ -15,7 +15,7 @@ module.exports = function(app, request, parseString) {
     else{
       // We might consider additional parameters like 'gametype' so that users can specify whether they are looking for board games, expansions, video games, etc.
       request.get({
-        url: 'http://boardgamegeek.com/xmlapi2/search?query="' + search + '"' + '&type=boardgame, boardgameexpansion, videogame'
+        url: 'http://boardgamegeek.com/xmlapi2/search?query="' + search + '"' + '&type=boardgame,boardgameexpansion,videogame'
       }, function(error, response){
           if(!error){
             try{
@@ -48,7 +48,7 @@ module.exports = function(app, request, parseString) {
                       }
 
                       // Game Title
-                      if((game.title !== undefined && typeFilter === false) || (typeFilter && (typeFilter === game.type))){
+                      if((game.title !== undefined && typeFilter === false) || (typeFilter && (typeFilter == game.type))){
                         games.push(game);
                       }
 

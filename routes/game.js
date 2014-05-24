@@ -30,7 +30,6 @@ module.exports = function(app, request, parseString){
 
                   //get primary title ??? terrible design...
                   for(var i = 0; i < data.name.length; i++){
-                    console.log(data.name[i]);
                     if(data.name[i].$.primary){
                       game.title = data.name[i]._;
                       break;
@@ -90,9 +89,6 @@ module.exports = function(app, request, parseString){
                 data = data.boardgames.boardgame[0];
 
                 if(data){
-
-                  console.log(JSON.stringify(data));
-
                   //gameID
                   game.id = id;
 
