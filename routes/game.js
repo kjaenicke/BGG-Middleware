@@ -90,7 +90,6 @@ module.exports = function(app, request, parseString){
                 data = data.boardgames.boardgame[0];
 
                 if(data){
-                  //console.log(data);
                   //gameID
                   game.id = id;
 
@@ -132,17 +131,18 @@ module.exports = function(app, request, parseString){
 
                   //comnts
                   game.comments = [];
-                  for(var c = 0; i < data.comment.length; c++){
-                    game.comments.push(data.comment[c]._);
+
+                  for(var c = 0; c < data.comment.length; c++){
+                    if(data.comment[c]._){
+                      game.comments.push(data.comment[c]._);
+                    }
+
+                    if(parseInt(game.comments.length, 10) === 25)
+                      break;
                   }
 
-                  console.log(data.statistics);
-
-
                   for(var s = 0; s < data.statistics.length; s++){
-                      // if(data.statistics[s].$ && data.statistics[s].$.primary){
-                        game.rating = data.statistics[s].ratings[0].average[0];
-                      // }
+                    game.rating = data.statistics[s].ratings[0].average[0];
                   }
 
                   res.write(JSON.stringify(game));
