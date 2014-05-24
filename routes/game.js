@@ -90,12 +90,14 @@ module.exports = function(app, request, parseString){
                 data = data.boardgames.boardgame[0];
 
                 if(data){
+
+                  console.log(JSON.stringify(data));
+
                   //gameID
                   game.id = id;
 
                   //get primary title ??? terrible design...
                   for(var i = 0; i < data.name.length; i++){
-                    console.log(data.name[i]);
                     if(data.name[i].$.primary){
                       game.title = data.name[i]._;
                       break;
@@ -103,46 +105,68 @@ module.exports = function(app, request, parseString){
                   }
 
                   //game description
-                  game.description = ent.decode(data.description[0].replace(/(<([^>]+)>)/ig,""));
+                  if(data.description){
+                    game.description = ent.decode(data.description[0].replace(/(<([^>]+)>)/ig,""));
+                  }
 
                   //year published
-                  game.yearPublished = data.yearpublished[0];
+                  if(data.yearpublished){
+                    game.yearPublished = data.yearpublished[0] || '';
+                  }
 
                   //min players
-                  game.minPlayers = data.minplayers[0];
+                  if(data.minplayers){
+                    game.minPlayers = data.minplayers[0] || '';
+                  }
 
                   //max players
-                  game.maxPlayers = data.maxplayers[0];
+                  if(data.maxplayers){
+                    game.maxPlayers = data.maxplayers[0] || '';
+                  }
 
                   //play time
-                  game.playingTime = data.playingtime[0];
+                  if(data.playingtime){
+                    game.playingTime = data.playingtime[0] || '';
+                  }
 
                   //minAge
-                  game.minAge = data.age[0];
+                  if(data.age){
+                    game.minAge = data.age[0] || '';
+                  }
 
                   //publisher
-                  game.publisher = data.boardgamepublisher[0]._;
+                  if(data.boardgamepublisher){
+                    game.publisher = data.boardgamepublisher[0]._ || '';
+                  }
 
                   //add theses in later...perhaps
                   game.expansions = [];
 
                   //URL for game's image
-                  game.thumbURL = data.thumbnail[0];
+                  if(data.thumbnail){
+                    game.thumbURL = data.thumbnail[0] || '';
+                  }
 
                   //comnts
                   game.comments = [];
 
-                  for(var c = 0; c < data.comment.length; c++){
-                    if(data.comment[c]._){
-                      game.comments.push(data.comment[c]._);
-                    }
+                  if(data.comment){
+                    for(var c = 0; c < data.comment.length; c++){
+                      if(data.comment[c]._){
+                        game.comments.push(data.comment[c]._);
+                      }
 
-                    if(parseInt(game.comments.length, 10) === 25)
-                      break;
+                      if(parseInt(game.comments.length, 10) === 25)
+                        break;
+                    }
                   }
 
-                  for(var s = 0; s < data.statistics.length; s++){
-                    game.rating = data.statistics[s].ratings[0].average[0];
+                  if(data.statistics){
+                    for(var s = 0; s < data.statistics.length; s++){
+                      if(data.statistics[s].ratings[0] || data.statistics[s].ratings[0].average[0]){
+                        game.rating = data.statistics[s].ratings[0].average[0] || '';
+                      }
+                    }
                   }
 
                   res.write(JSON.stringify(game));
@@ -154,14 +178,14 @@ module.exports = function(app, request, parseString){
                 }
               });
             }
-            catch (e){
-              res.send('500');
+            catch (err){
+              res.send('500', err);
               res.end();
-              throw new Error(e);
+              throw new Error(err);
             }
           }
           else{
-            res.send('500');
+            res.send('500', e);
             res.end();
             throw new Error(error);
           }

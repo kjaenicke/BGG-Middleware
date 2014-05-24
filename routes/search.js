@@ -28,7 +28,9 @@ module.exports = function(app, request, parseString) {
 
                   for(var i = 0; i < results.length; i++){
                       var game = {};
-                      game.title = results[i].name[0].$.value || undefined;
+                      if(results[i].name && results[i].name[0] && results[i].name[0].$){
+                        game.title = results[i].name[0].$.value || '';
+                      }
 
                       // Year published
                       if(results[i].yearpublished && results[i].yearpublished.length > 0){
@@ -72,8 +74,6 @@ module.exports = function(app, request, parseString) {
                     games = games.slice(0, parseInt(limit, 10));
                   }
 
-                  //set total results
-                  //payload.totalResults = payload.games.length;
                 }
 
                 res.write(JSON.stringify(games));
