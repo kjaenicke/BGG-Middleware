@@ -11,7 +11,8 @@
     "express": "4.2.0",
     "request": "*",
     "xml2js": "*",
-    "ent": "2.0.0"
+    "ent": "2.0.0",
+    "cheerio": "*"
   },
   "devDependencies": {
     "grunt": "0.4.1",
