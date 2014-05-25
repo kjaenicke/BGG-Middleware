@@ -2,12 +2,67 @@ var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
 
+var baseURL = process.env.NODE_ENV == 'dev' ? 'http://localhost:1337' : 'http://powerful-cove-3241.herokuapp.com';
+
+//BASIC GAME ROUTE
+describe('getting basic game', function(){
+    describe('get game\'s id', function(){
+      it('should return a gameID', function(done){
+        request.get({ url: baseURL + '/game?id=9209' },
+          function (err, res) {
+            if(err) { throw err; }
+            payload = JSON.parse(res.body);
+            assert.equal(9209, payload.id);
+            done();
+          });
+        });
+      });
+
+    describe('get game\'s title', function(){
+      it('should return a title', function(done){
+        request.get({ url: baseURL + '/game?id=9209' },
+          function (err, res) {
+            if(err) { throw err; }
+            payload = JSON.parse(res.body);
+            payload.title.length.should.be.above(0);
+            done();
+        });
+      });
+    });
+
+    describe('get game\'s thumbURL', function(){
+      it('should return a thumbURL', function(done){
+        request.get({ url: baseURL + '/game?id=9209' },
+          function (err, res) {
+            if(err) { throw err; }
+            payload = JSON.parse(res.body);
+            payload.thumbURL.length.should.be.above(0);
+            done();
+        });
+      });
+    });
+
+    describe('get game\'s title', function(){
+      it('should return a title', function(done){
+        request.get({ url: baseURL + '/game?id=9209' },
+          function (err, res) {
+            if(err) { throw err; }
+            payload = JSON.parse(res.body);
+            payload.title.length.should.be.above(0);
+            done();
+        });
+      });
+    });
+});
+
+
+//DETAILS ROUTE
 describe('getting game details', function(){
   describe('get game\'s id', function(){
         it('should return a gameID', function(done){
-          request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+          request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
-              if(err) { throw err };
+              if(err) { throw err; }
               payload = JSON.parse(res.body);
               assert.equal(9209, payload.id);
               done();
@@ -17,7 +72,7 @@ describe('getting game details', function(){
 
     describe('get game title', function(){
         it('should return the game\'s title', function(done){
-          request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+          request.get({ url: baseURL + '/game/details?id=9209' },
           function (err, res) {
             if(err){ throw err; }
             payload = JSON.parse(res.body);
@@ -29,7 +84,7 @@ describe('getting game details', function(){
 
     describe('get game description', function(){
           it('should return the game\'s description', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
@@ -41,7 +96,7 @@ describe('getting game details', function(){
 
     describe('get game comments', function(){
           it('should return the game\'s comments [25]', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               else{
@@ -55,7 +110,7 @@ describe('getting game details', function(){
 
     describe('get game rating', function(){
           it('should return the game\'s rating', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               else{
@@ -69,7 +124,7 @@ describe('getting game details', function(){
 
     describe('get game yearPublished', function(){
           it('should return the game\'s year published', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
@@ -81,7 +136,7 @@ describe('getting game details', function(){
 
     describe('get game minPlayers', function(){
           it('should return the game\'s minPlayers', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
@@ -93,7 +148,7 @@ describe('getting game details', function(){
 
     describe('get game maxPlayers', function(){
           it('should return the game\'s maxPlayers', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
@@ -105,7 +160,7 @@ describe('getting game details', function(){
 
     describe('get game playingTime', function(){
           it('should return the game\'s playingTime', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
@@ -117,7 +172,7 @@ describe('getting game details', function(){
 
     describe('get game minAge', function(){
           it('should return the game\'s minAge', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
@@ -129,7 +184,7 @@ describe('getting game details', function(){
 
     describe('get game publisher', function(){
           it('should return the game\'s publisher', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
@@ -141,7 +196,7 @@ describe('getting game details', function(){
 
     describe('get game thumbURL', function(){
           it('should return the game\'s thumbURL', function(done){
-            request.get({ url: 'http://powerful-cove-3241.herokuapp.com/game/details?id=9209' },
+            request.get({ url: baseURL + '/game/details?id=9209' },
             function (err, res) {
               if(err){ throw err; }
               payload = JSON.parse(res.body);
