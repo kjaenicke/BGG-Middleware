@@ -206,4 +206,16 @@ describe('getting game details', function(){
           });
     });
 
+    describe('get game overall ranking', function(){
+          it('should return the game\'s overall rank', function(done){
+            request.get({ url: baseURL + '/game/details?id=9209' },
+            function (err, res) {
+              if(err){ throw err; }
+              payload = JSON.parse(res.body);
+              payload.boardGameRank.length.should.be.above(0);
+              done();
+            });
+          });
+    });
+
 });
