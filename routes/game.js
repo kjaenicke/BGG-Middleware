@@ -90,6 +90,9 @@ module.exports = function(app, request, parseString){
                 data = data.boardgames.boardgame[0];
 
                 if(data){
+                  //temporary
+                  game.raw = data;
+
                   //gameID
                   game.id = id;
 
@@ -133,7 +136,10 @@ module.exports = function(app, request, parseString){
 
                   //publisher
                   if(data.boardgamepublisher){
-                    game.publisher = data.boardgamepublisher[0]._ || '';
+                    game.publisher = [];
+                    for (var i = 0; i < data.boardgamepublisher.length; i++){
+                      game.publisher.push(data.boardgamepublisher[i]._ || '')
+                    }
                   }
 
                   game.expansions = [];
