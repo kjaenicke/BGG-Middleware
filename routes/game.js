@@ -183,9 +183,13 @@ module.exports = function(app, request, parseString){
                   game.comments = [];
 
                   if(data.comment){
-                    for(var c = 0; c < data.comment.length; c++){
-                      if(data.comment[c]._){
-                        game.comments.push(data.comment[c]._);
+                    for(var i = 0; i < data.comment.length; i++){
+                      if(data.comment[i]._){
+                        game.comments.push({
+                          'text'   : data.comment[i]._,
+                          'author' : data.comment[i].$.username || '',
+                          'rating' : data.comment[i].$.rating || ''
+                        });
                       }
 
                       if(parseInt(game.comments.length, 10) === 25)
