@@ -150,6 +150,66 @@ module.exports = function(app, request, parseString){
                     }
                   }
 
+                  //designer
+                  if(data.boardgamedesigner){
+                    game.designer = [];
+                    for (var i = 0; i < data.boardgamedesigner.length; i++){
+                      game.designer.push(data.boardgamedesigner[i]._ || '')
+                    }
+                  }
+
+                  //artist
+                  if(data.boardgameartist){
+                    game.artist = [];
+                    for (var i = 0; i < data.boardgameartist.length; i++){
+                      game.artist.push(data.boardgameartist[i]._ || '')
+                    }
+                  }
+
+                  //versions
+                  if(data.boardgameversion){
+                    game.versions = [];
+                    for (var i = 0; i < data.boardgameversion.length; i++){
+                      game.versions.push({
+                        'value' : data.boardgameversion[i]._ || '',
+                        'id' : data.boardgameversion[i].$.objectid || ''
+                      });
+                    }
+                  }
+
+                  //mechanics
+                  if(data.boardgamemechanic){
+                    game.mechanic = [];
+                    for (var i = 0; i < data.boardgamemechanic.length; i++){
+                      game.mechanic.push({
+                        'value' : data.boardgamemechanic[i]._ || '',
+                        'id' : data.boardgamemechanic[i].$.objectid || ''
+                      });
+                    }
+                  }
+
+                  //categories
+                  if(data.boardgamecategory){
+                    game.category = [];
+                    for (var i = 0; i < data.boardgamecategory.length; i++){
+                      game.category.push({
+                        'value' : data.boardgamecategory[i]._ || '',
+                        'id' : data.boardgamecategory[i].$.objectid || ''
+                      });
+                    }
+                  }
+
+                  //subdomains
+                  if(data.boardgamesubdomain){
+                    game.subdomain = [];
+                    for (var i = 0; i < data.boardgamesubdomain.length; i++){
+                      game.subdomain.push({
+                        'value' : data.boardgamesubdomain[i]._ || '',
+                        'id' : data.boardgamesubdomain[i].$.objectid || ''
+                      });
+                    }
+                  }
+
                   game.expansions = [];
                   if(data.boardgameexpansion){
                     for(var x = 0; x < data.boardgameexpansion.length; x++){
@@ -179,7 +239,7 @@ module.exports = function(app, request, parseString){
                     game.thumbURL = data.thumbnail[0] || '';
                   }
 
-                  //comnts
+                  //comments
                   game.comments = [];
 
                   if(data.comment){
