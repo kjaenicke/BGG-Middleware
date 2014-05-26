@@ -106,7 +106,7 @@ module.exports = function(app, request, parseString){
 
                   //game description
                   if(data.description){
-                    game.description = ent.decode(data.description[0].replace(/(<([^>]+)>)/ig,""));
+                    game.description = data.description[0];
                   }
 
                   //year published
@@ -135,6 +135,14 @@ module.exports = function(app, request, parseString){
                   }
 
                   //publisher
+                  if(data.boardgamehonor){
+                    game.honor = [];
+                    for (var i = 0; i < data.boardgamehonor.length; i++){
+                      game.honor.push(data.boardgamehonor[i]._ || '')
+                    }
+                  }
+
+                  //honors
                   if(data.boardgamepublisher){
                     game.publisher = [];
                     for (var i = 0; i < data.boardgamepublisher.length; i++){
