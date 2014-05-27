@@ -137,39 +137,39 @@ module.exports = function(app, request, parseString){
                   //publisher
                   if(data.boardgamehonor){
                     game.honor = [];
-                    for (var i = 0; i < data.boardgamehonor.length; i++){
-                      game.honor.push(data.boardgamehonor[i]._ || '')
+                    for (i = 0; i < data.boardgamehonor.length; i++){
+                      game.honor.push(data.boardgamehonor[i]._ || '');
                     }
                   }
 
                   //honors
                   if(data.boardgamepublisher){
                     game.publisher = [];
-                    for (var i = 0; i < data.boardgamepublisher.length; i++){
-                      game.publisher.push(data.boardgamepublisher[i]._ || '')
+                    for (i = 0; i < data.boardgamepublisher.length; i++){
+                      game.publisher.push(data.boardgamepublisher[i]._ || '');
                     }
                   }
 
                   //designer
                   if(data.boardgamedesigner){
                     game.designer = [];
-                    for (var i = 0; i < data.boardgamedesigner.length; i++){
-                      game.designer.push(data.boardgamedesigner[i]._ || '')
+                    for (i = 0; i < data.boardgamedesigner.length; i++){
+                      game.designer.push(data.boardgamedesigner[i]._ || '');
                     }
                   }
 
                   //artist
                   if(data.boardgameartist){
                     game.artist = [];
-                    for (var i = 0; i < data.boardgameartist.length; i++){
-                      game.artist.push(data.boardgameartist[i]._ || '')
+                    for (i = 0; i < data.boardgameartist.length; i++){
+                      game.artist.push(data.boardgameartist[i]._ || '');
                     }
                   }
 
                   //versions
                   if(data.boardgameversion){
                     game.versions = [];
-                    for (var i = 0; i < data.boardgameversion.length; i++){
+                    for (i = 0; i < data.boardgameversion.length; i++){
                       game.versions.push({
                         'value' : data.boardgameversion[i]._ || '',
                         'id' : data.boardgameversion[i].$.objectid || ''
@@ -180,7 +180,7 @@ module.exports = function(app, request, parseString){
                   //mechanics
                   if(data.boardgamemechanic){
                     game.mechanic = [];
-                    for (var i = 0; i < data.boardgamemechanic.length; i++){
+                    for (i = 0; i < data.boardgamemechanic.length; i++){
                       game.mechanic.push({
                         'value' : data.boardgamemechanic[i]._ || '',
                         'id' : data.boardgamemechanic[i].$.objectid || ''
@@ -191,7 +191,7 @@ module.exports = function(app, request, parseString){
                   //categories
                   if(data.boardgamecategory){
                     game.category = [];
-                    for (var i = 0; i < data.boardgamecategory.length; i++){
+                    for (i = 0; i < data.boardgamecategory.length; i++){
                       game.category.push({
                         'value' : data.boardgamecategory[i]._ || '',
                         'id' : data.boardgamecategory[i].$.objectid || ''
@@ -202,7 +202,7 @@ module.exports = function(app, request, parseString){
                   //subdomains
                   if(data.boardgamesubdomain){
                     game.subdomain = [];
-                    for (var i = 0; i < data.boardgamesubdomain.length; i++){
+                    for (i = 0; i < data.boardgamesubdomain.length; i++){
                       game.subdomain.push({
                         'value' : data.boardgamesubdomain[i]._ || '',
                         'id' : data.boardgamesubdomain[i].$.objectid || ''
@@ -243,7 +243,7 @@ module.exports = function(app, request, parseString){
                   game.comments = [];
 
                   if(data.comment){
-                    for(var i = 0; i < data.comment.length; i++){
+                    for(i = 0; i < data.comment.length; i++){
                       if(data.comment[i]._){
                         game.comments.push({
                           'text'   : data.comment[i]._,
