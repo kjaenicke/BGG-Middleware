@@ -2,7 +2,7 @@ var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
 
-var baseURL = process.env.NODE_ENV == 'dev' ? 'http://localhost:1337' : 'http://powerful-cove-3241.herokuapp.com';
+var baseURL = process.env.NODE_ENV == 'dev' ? 'http://localhost:1337' : 'http://bgg-middleware.herokuapp.com';
 
 describe('getting most active games', function(){
 
