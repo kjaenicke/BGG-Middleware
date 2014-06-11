@@ -13,13 +13,26 @@ module.exports = function(grunt) {
         },
         src: ['test/**/*.js']
       }
-    }
+    },
+    complexity: {
+        all: {
+            src: ['Gruntfile.js', 'utils/*.js', 'routes/*.js', 'index.js', 'test/**/*.js'],
+            options: {
+                breakOnErrors: false,
+                errorsOnly: false,
+                cyclomatic: [3, 7, 12],
+                maintainability: 80,
+                hideComplexFunctions: true
+            }
+        }
+      }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-complexity');
+  grunt.loadNpmTasks('grunt-connect');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'mochaTest']);
-
+  grunt.registerTask('default', ['jshint', 'complexity', 'mochaTest']);
 };

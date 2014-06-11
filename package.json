@@ -4,15 +4,16 @@
   "description": "BGG API Wrapper",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node index",
     "test": "grunt --verbose"
   },
   "dependencies": {
-    "express": "4.2.0",
-    "request": "*",
-    "xml2js": "*",
+    "cheerio": "*",
     "ent": "2.0.0",
-    "cheerio": "*"
+    "express": "4.2.0",
+    "grunt-complexity": "^0.1.7",
+    "request": "2.36.0",
+    "xml2js": "*"
   },
   "devDependencies": {
     "grunt": "0.4.1",
