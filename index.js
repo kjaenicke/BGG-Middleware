@@ -11,7 +11,8 @@ require('./routes/search')(app, request, parseString);
 require('./routes/mostActive')(app, request, parseString);
 require('./routes/game')(app, request, parseString);
 require('./routes/gameImages')(app, request);
+require('./routes/forums')(app, request, parseString);
 
 app.listen(app.get('port'), function() {
-  console.log("BGG API running at localhost:" + app.get('port'));
+  console.log("BGG API running at :" + app.get('port'));
 });
