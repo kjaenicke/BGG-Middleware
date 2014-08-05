@@ -210,6 +210,18 @@ module.exports = function(app, request, parseString){
                     }
                   }
 
+                  //families
+                  if(data.boardgamefamily){
+                    game.subdomain = [];
+                    for (i = 0; i < data.boardgamefamily.length; i++){
+                      game.family.push({
+                        'value' : data.boardgamefamily[i]._ || '',
+                        'id' : data.boardgamefamily[i].$.objectid || ''
+                      });
+                    }
+                  }
+
+                  //expansion shit
                   game.expansions = [];
                   if(data.boardgameexpansion){
                     for(var x = 0; x < data.boardgameexpansion.length; x++){
@@ -262,20 +274,16 @@ module.exports = function(app, request, parseString){
                       if(data.statistics[s].ratings[0] || data.statistics[s].ratings[0].average[0]){
                         game.rating = data.statistics[s].ratings[0].average[0] || '';
                       }
-                    }
-                  }
 
-                  if(data.statistics){
-                    for(var r = 0; r < data.statistics.length; r++){
                       if(data.statistics[r].ratings[0] || data.statistics[r].ratings[0].ranks){
-                          for(var rankIndex = 0; rankIndex < data.statistics[r].ratings[0].ranks[0].rank.length; rankIndex++){
-                            if(data.statistics[r].ratings[0].ranks[0].rank[rankIndex].$.name == 'boardgame'){
-                              game.boardGameRank = data.statistics[r].ratings[0].ranks[0].rank[rankIndex].$.value;
-                            }
+                        for(var rankIndex = 0; rankIndex < data.statistics[r].ratings[0].ranks[0].rank.length; rankIndex++){
+                          if(data.statistics[r].ratings[0].ranks[0].rank[rankIndex].$.name == 'boardgame'){
+                            game.boardGameRank = data.statistics[r].ratings[0].ranks[0].rank[rankIndex].$.value;
                           }
                         }
                       }
                     }
+                  }
 
                   res.write(JSON.stringify(game));
                   res.end();
