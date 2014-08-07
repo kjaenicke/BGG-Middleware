@@ -134,7 +134,7 @@ module.exports = function(app, request, parseString){
                     game.minAge = data.age[0] || '';
                   }
 
-                  //publisher
+                  //honor
                   if(data.boardgamehonor){
                     game.honor = [];
                     for (i = 0; i < data.boardgamehonor.length; i++){
@@ -142,7 +142,7 @@ module.exports = function(app, request, parseString){
                     }
                   }
 
-                  //honors
+                  //publisher
                   if(data.boardgamepublisher){
                     game.publisher = [];
                     for (i = 0; i < data.boardgamepublisher.length; i++){
@@ -212,7 +212,7 @@ module.exports = function(app, request, parseString){
 
                   //families
                   if(data.boardgamefamily){
-                    game.subdomain = [];
+                    game.family = [];
                     for (i = 0; i < data.boardgamefamily.length; i++){
                       game.family.push({
                         'value' : data.boardgamefamily[i]._ || '',
@@ -275,10 +275,10 @@ module.exports = function(app, request, parseString){
                         game.rating = data.statistics[s].ratings[0].average[0] || '';
                       }
 
-                      if(data.statistics[r].ratings[0] || data.statistics[r].ratings[0].ranks){
-                        for(var rankIndex = 0; rankIndex < data.statistics[r].ratings[0].ranks[0].rank.length; rankIndex++){
-                          if(data.statistics[r].ratings[0].ranks[0].rank[rankIndex].$.name == 'boardgame'){
-                            game.boardGameRank = data.statistics[r].ratings[0].ranks[0].rank[rankIndex].$.value;
+                      if(data.statistics[s].ratings[0] || data.statistics[s].ratings[0].ranks){
+                        for(var rankIndex = 0; rankIndex < data.statistics[s].ratings[0].ranks[0].rank.length; rankIndex++){
+                          if(data.statistics[s].ratings[0].ranks[0].rank[rankIndex].$.name == 'boardgame'){
+                            game.boardGameRank = data.statistics[s].ratings[0].ranks[0].rank[rankIndex].$.value;
                           }
                         }
                       }
