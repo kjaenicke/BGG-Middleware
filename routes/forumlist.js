@@ -41,27 +41,4 @@ module.exports = function(app, request, parseString){
       });
     }
   });
-
-  // function getThreads(forumIds){
-  //   _.each(forumIds, function(id){
-  //     //take the forum id's and get the threads associated with them
-  //     request.get({
-  //       url: 'http://boardgamegeek.com/xmlapi2/thread?id=' + id
-  //     }, function(err, resp){
-  //       try {
-  //         parseString(resp.body, function(err, data){
-  //           if(data){
-  //             var threads = _.pluck(data, '$');
-  //             console.log(threads);
-  //           }
-  //         });
-  //       }
-  //       catch (e){
-  //         res.send('500');
-  //         res.end(e);
-  //         throw new Error(e);
-  //       }
-  //     });
-  //   });
-  // }
 };
