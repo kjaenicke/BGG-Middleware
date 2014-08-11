@@ -91,7 +91,7 @@ module.exports = function(app, request, parseString){
 
                 if(data){
                   //temporary
-                  game.raw = data;
+                  //game.raw = data;
 
                   //gameID
                   game.id = id;
