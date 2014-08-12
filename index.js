@@ -14,6 +14,8 @@ require('./routes/gameImages')(app, request);
 require('./routes/forumlist')(app, request, parseString);
 require('./routes/threadList')(app, request, parseString);
 require('./routes/thread')(app, request, parseString);
+require('./routes/mechanics')(app, request, parseString);
+require('./routes/categories')(app, request);
 
 app.listen(app.get('port'), function() {
   console.log("BGG API running at :" + app.get('port'));
