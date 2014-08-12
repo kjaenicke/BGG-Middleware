@@ -92,8 +92,8 @@ module.exports = function(app, request, parseString){
           });
       }
       catch(e) {
-        throw new Error(e);
         res.end('500', e);
+        throw new Error(e);
       }
     });
   });
