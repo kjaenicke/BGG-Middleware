@@ -1,6 +1,6 @@
 var cheerio = require('cheerio');
 var http = require('http');
-var gunzip = require('zlib').createGunzip();
+var zlib = require('zlib');
 
 module.exports = function(app, request){
   app.get('/top100', function(req, response){
@@ -12,6 +12,7 @@ module.exports = function(app, request){
 
       http.get(options, function(res) {
         var body = '';
+        var gunzip = zlib.createGunzip();
 
         res.pipe(gunzip);
 
@@ -41,9 +42,9 @@ module.exports = function(app, request){
       });
     }
     catch (e){
-    res.send('500');
-    res.end();
-    throw new Error(e);
+      res.send('500');
+      res.end();
+      throw new Error(e);
     }
   });
 };
