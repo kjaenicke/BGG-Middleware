@@ -44,6 +44,8 @@ module.exports = function(app, request, parseString){
             });
           }
           catch (e){
+            res.send('500');
+            res.end();
             throw new Error(e);
           }
         });

@@ -14,7 +14,8 @@
     "grunt-complexity": "^0.1.7",
     "request": "2.36.0",
     "underscore-node": "^0.1.2",
-    "xml2js": "*"
+    "xml2js": "*",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "grunt": "0.4.1",
