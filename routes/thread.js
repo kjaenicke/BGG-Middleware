@@ -35,8 +35,6 @@ module.exports = function(app, request, parseString){
                     });
                 });
 
-                thread.articles = thread.articles.reverse();
-
                 //send those bitches
                 res.write(JSON.stringify(thread));
                 res.end();
