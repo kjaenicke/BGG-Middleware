@@ -22,11 +22,9 @@ module.exports = function(app, request){
         $ = cheerio.load(body);
         $('#main_content .forum_table tr td img').each(function(index, image){
           var src = $(image).attr('src');
-          console.log(src);
 
           if(regex.test(src) && avatarRegex.test(src)){
             src = 'http:' + src;
-            console.log(src);
             images.push({ url: src });
           }
         });
