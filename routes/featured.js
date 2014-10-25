@@ -170,7 +170,11 @@ module.exports = function(app, request, parseString){
 
                   //URL for game's image
                   if(data.thumbnail){
-                    game.thumbURL = data.thumbnail[0] || '';
+                    var thumbURL = data.thumbnail[0] || '';
+                    if (thumbURL.substring(0,2) === '//') {
+                      thumbURL = "http:" + thumbURL;
+                    }
+                    game.thumbURL = thumbURL;
                   }
 
                   //comments

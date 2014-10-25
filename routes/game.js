@@ -41,7 +41,13 @@ module.exports = function(app, request, parseString){
                   game.description = ent.decode(data.description[0].replace(/(<([^>]+)>)/ig,""));
 
                   //URL for game's image
-                  game.thumbURL = data.thumbnail[0];
+                  if(data.thumbnail){
+                    var thumbURL = data.thumbnail[0] || '';
+                    if (thumbURL.substring(0,2) === '//') {
+                      thumbURL = "http:" + thumbURL;
+                    }
+                    game.thumbURL = thumbURL;
+                  }
 
                   res.write(JSON.stringify(game));
                   res.end();
@@ -245,10 +251,13 @@ module.exports = function(app, request, parseString){
 
                   game.expansions.sort(function(a,b) {return (a.matchPercentage > b.matchPercentage) ? -1 : ((b.matchPercentage > a.matchPercentage) ? 1 : 0);});
 
-
                   //URL for game's image
                   if(data.thumbnail){
-                    game.thumbURL = data.thumbnail[0] || '';
+                    var thumbURL = data.thumbnail[0] || '';
+                    if (thumbURL.substring(0,2) === '//') {
+                      thumbURL = "http:" + thumbURL;
+                    }
+                    game.thumbURL = thumbURL;
                   }
 
                   //comments

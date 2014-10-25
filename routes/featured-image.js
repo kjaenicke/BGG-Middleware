@@ -15,6 +15,9 @@ module.exports = function(app, request, parseString){
                 if(data){
                   if(data.thumbnail){
                     var thumbURL = data.thumbnail[0] || '';
+                    if (thumbURL.substring(0,2) === '//') {
+                      thumbURL = "http:" + thumbURL;
+                    }
                     res.send(JSON.stringify({"thumbURL":thumbURL}));
                     res.end();
                   } else {

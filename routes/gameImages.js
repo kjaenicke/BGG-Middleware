@@ -23,6 +23,11 @@ module.exports = function(app, request){
         $('#main_content .forum_table tr td img').each(function(index, image){
           var src = $(image).attr('src');
           if(regex.test(src) && avatarRegex.test(src)){
+
+            if (src.substring(0,2) === '//') {
+              src = "http:" + src;
+            }
+
             images.push({ url: src });
           }
         });
