@@ -15,19 +15,18 @@ module.exports = function(app, request){
         if(err){ throw err; }
 
         //remove some of the really shitty images...they all still kinda suck though
-        var regex       = new RegExp('^(http|https)://');
+        var regex       = new RegExp('^(//cf.)');
         var avatarRegex = new RegExp('^((?!avatars).)*$');
         var images = [];
 
         $ = cheerio.load(body);
         $('#main_content .forum_table tr td img').each(function(index, image){
           var src = $(image).attr('src');
+          console.log(src);
+
           if(regex.test(src) && avatarRegex.test(src)){
-
-            if (src.substring(0,2) === '//') {
-              src = "http:" + src;
-            }
-
+            src = 'http:' + src;
+            console.log(src);
             images.push({ url: src });
           }
         });
