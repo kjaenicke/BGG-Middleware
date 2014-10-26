@@ -10,7 +10,7 @@
   "dependencies": {
     "cheerio": "*",
     "ent": "2.0.0",
-    "express": "4.8.0",
+    "express": "4.10.0",
     "grunt-complexity": "^0.1.7",
     "request": "2.36.0",
     "underscore-node": "^0.1.2",
