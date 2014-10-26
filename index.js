@@ -19,6 +19,7 @@ require('./routes/categories')(app, request);
 require('./routes/featured')(app, request, parseString);
 require('./routes/featured-image')(app, request, parseString);
 require('./routes/top100')(app, request);
+require('./routes/announcements')(app, request);
 
 app.listen(app.get('port'), function() {
   console.log("BGG API running at :" + app.get('port'));
