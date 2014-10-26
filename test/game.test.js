@@ -201,6 +201,7 @@ describe('getting game details', function(){
               if(err){ throw err; }
               payload = JSON.parse(res.body);
               payload.thumbURL.length.should.be.above(0);
+              payload.thumbURL.should.startWith('http://', 'URL does not start with http://');
               done();
             });
           });

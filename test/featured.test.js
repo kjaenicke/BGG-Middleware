@@ -24,7 +24,8 @@ describe('getting featured boardgame', function(){
       function (err, res) {
         if(err) { throw err; }
         payload = JSON.parse(res.body);
-        payload.thumbURL.length.should.be.above(0);
+        payload.thumbURL.length.should.be.above(0, 'URL length not greater than 0');
+        payload.thumbURL.should.startWith('http://', 'URL does not start with http://');
         done();
       });
     });
