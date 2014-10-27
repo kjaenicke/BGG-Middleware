@@ -13,23 +13,11 @@ describe('getting annoucements', function(){
       function (err, res) {
         if(err) { throw err; }
         payload = JSON.parse(res.body);
-        payload.announcements.should.be.instanceOf(Array);
-        payload.announcements.length.should.be.above(0);
+        payload.should.be.instanceOf(Array);
+        payload.length.should.be.above(0);
         done();
       });
     });
-
-    // it('should return a lastUpdated time', function(done){
-    //   request.get({ url: baseURL + '/announcements' },
-    //   function (err, res) {
-    //     if(err) { throw err; }
-    //     payload = JSON.parse(res.body);
-    //     payload.lastUpdated.length.should.be.above(0);
-    //     var temp = new Date(payload.lastUpdated);
-    //     temp.should.be.instanceOf(Date);
-    //     done();
-    //   });
-    // });
 
   });
 
