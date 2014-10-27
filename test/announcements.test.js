@@ -19,17 +19,18 @@ describe('getting annoucements', function(){
       });
     });
 
-    it('should return a lastUpdated time', function(done){
-      request.get({ url: baseURL + '/announcements' },
-      function (err, res) {
-        if(err) { throw err; }
-        payload = JSON.parse(res.body);
-        payload.lastUpdated.length.should.be.above(0);
-        var temp = new Date(payload.lastUpdated);
-        temp.should.be.instanceOf(Date);
-        done();
-      });
-    });
+    // it('should return a lastUpdated time', function(done){
+    //   request.get({ url: baseURL + '/announcements' },
+    //   function (err, res) {
+    //     if(err) { throw err; }
+    //     payload = JSON.parse(res.body);
+    //     payload.lastUpdated.length.should.be.above(0);
+    //     var temp = new Date(payload.lastUpdated);
+    //     temp.should.be.instanceOf(Date);
+    //     done();
+    //   });
+    // });
+
   });
 
 });
