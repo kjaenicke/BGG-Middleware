@@ -5,7 +5,7 @@ before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt
 notifications:
-  email: false
+  email: shawn.p.hoffman+travis@gmail.com
 deploy:
   provider: heroku
   api_key: "404ff284-b522-4ee5-99bf-99b54e32a66a"
