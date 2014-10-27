@@ -2,7 +2,7 @@ var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
 
-var baseURL = process.env.NODE_ENV == 'dev' ? 'http://localhost:1337' : 'http://bgg-middleware.azurewebsites.net';
+var baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:1337' : 'http://bgg-middleware.azurewebsites.net';
 
 describe('getting most active games', function(){
 

@@ -1,10 +1,10 @@
 {
   "name": "BGG-Middleware",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "BGG API Wrapper",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "NODE_ENV=production node index",
     "test": "grunt --verbose"
   },
   "dependencies": {
@@ -31,6 +31,6 @@
     "url": "https://github.com/kjaenicke/BGG-Middleware.git"
   },
   "author": "Keenan Jaenicke",
-  "contributors": [],
+  "contributors": ["Shawn Hoffman"],
   "license": "MIT"
 }
