@@ -2,7 +2,7 @@ module.exports = function(app, request){
   app.get('/announcements', function(req, res){
     request.get({ url: 'http://kjaenicke.github.io/BGG_App/announcements.json'},
       function(error, response){
-        if(!error && JSON.parse(response.body).lastUpdated !== undefined){
+        if(!error){
           res.write(response.body);
           res.end();
         } else {
