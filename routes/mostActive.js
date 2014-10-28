@@ -1,3 +1,9 @@
+var _         = require('underscore-node');
+var NodeCache = require( "node-cache" );
+
+//caching shib
+var gameCache = new NodeCache();
+
 module.exports = function(app, request, parseString){
   app.get('/mostActive', function(req, res){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
@@ -11,19 +17,27 @@ module.exports = function(app, request, parseString){
         throw new Error('Empty type error');
       }
       else{
-        request.get({
-          url: 'http://boardgamegeek.com/xmlapi2/hot?type="' + type + '"'
-        }, function(error, response){
-            if(!error){
-              try{
-                var games = [];
+        //try to load 50 most active from cache
+        gameCache.get('hot50', function( err, value ){
+          if(!err && !_.isEmpty(value)){
+            res.send(value.hot50);
+            res.end();
+          }
+          // wasn't cached or err'd when fetching from cache
+          else {
+            request.get({
+              url: 'http://boardgamegeek.com/xmlapi2/hot?type="' + type + '"'
+            }, function(error, response){
+              if(!error){
+                try{
+                  var games = [];
 
-                //convert xml to json
-                parseString(response.body, function (err, data) {
-                  if(data.items.item){
-                    var results = data.items.item;
+                  //convert xml to json
+                  parseString(response.body, function (err, data) {
+                    if(data.items.item){
+                      var results = data.items.item;
 
-                    for(var i = 0; i < results.length; i++){
+                      for(var i = 0; i < results.length; i++){
                         var game = {};
                         game.title = results[i].name[0].$.value || undefined;
 
@@ -43,30 +57,39 @@ module.exports = function(app, request, parseString){
                         }
 
                         games.push(game);
+                      }
+
+                      //limit results if parameter exists
+                      if(limit != -1){
+                        games = games.slice(0, parseInt(limit, 10));
+                      }
+
                     }
 
-                    //limit results if parameter exists
-                    if(limit != -1){
-                      games = games.slice(0, parseInt(limit, 10));
-                    }
+                    //cache for .5 days
+                    gameCache.set('hot50', JSON.stringify(games), 43200, function( err, success ){
+                      if( !err && success ){
+                        console.log('Hot 50 Games Cached...');
+                      }
+                    });
 
-                  }
-
-                  res.write(JSON.stringify(games));
+                    res.write(JSON.stringify(games));
+                    res.end();
+                  });
+                }
+                catch (e){
+                  res.send('500');
                   res.end();
-                });
+                  throw new Error(e);
+                }
               }
-              catch (e){
+              else{
                 res.send('500');
                 res.end();
-                throw new Error(e);
+                throw new Error(error);
               }
-            }
-            else{
-              res.send('500');
-              res.end();
-              throw new Error(error);
-            }
+            });
+          }
         });
       }
     } else {
