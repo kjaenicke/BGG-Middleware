@@ -8,7 +8,7 @@ var whitelist = [
   "http://bgg-middleware.azurewebsites.net",
   "http://bgg-middleware-staging.azurewebsites.net",
   "http://bgg-middleware-stage.azurewebsites.net"
-]
+];
 var corsOptions = {
   origin: function(origin, callback){
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
