@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node index",
-    "test": "grunt --verbose"
+    "test": "NODE_ENV=production grunt --verbose"
   },
   "dependencies": {
     "cheerio": "*",
