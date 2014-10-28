@@ -2,6 +2,7 @@ var ent = require('ent');
 
 module.exports = function(app, request, parseString){
   app.get('/featured/image', function(req,res){
+    if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       request.get({
         url: 'http://boardgamegeek.com/xmlapi/game/' + 157354
       }, function(error, response){
@@ -43,5 +44,9 @@ module.exports = function(app, request, parseString){
             throw new Error(error);
           }
       });
+    } else {
+      res.status(401).write('Unauthorized');
+      res.end();
+    }
   });
 };

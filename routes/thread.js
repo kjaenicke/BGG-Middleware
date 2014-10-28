@@ -2,6 +2,7 @@ var _ = require('underscore-node');
 
 module.exports = function(app, request, parseString){
   app.get('/thread', function(req, res){
+    if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
     //get querystring params passed in
     var id  = req.query.id || -1;
 
@@ -47,6 +48,10 @@ module.exports = function(app, request, parseString){
             throw new Error(e);
           }
         });
+      }
+    } else {
+      res.status(401).write('Unauthorized');
+      res.end();
     }
   });
 };

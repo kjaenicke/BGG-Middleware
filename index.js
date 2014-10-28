@@ -42,11 +42,3 @@ require('./routes/apps')(app, request);
 app.listen(app.get('port'), function() {
   console.log("BGG API running at :" + app.get('port'));
 });
-
-var allowCrossDomain = function(req, res, next) {
-    // res.header('Access-Control-Allow-Origin', 'example.com');
-    res.header('Access-Control-Allow-Methods', 'GET');
-    res.header('Access-Control-Allow-Headers', 'auth-token');
-
-    next();
-}
