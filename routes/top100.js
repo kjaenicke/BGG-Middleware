@@ -8,33 +8,21 @@ var NodeCache = require( "node-cache" );
 var gameCache = new NodeCache();
 
 module.exports = function(app, request){
-  app.get('/top100', function(req, response){
+  app.get('/top100', function(req, res){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       try {
         //try to load top 100 from cache
         gameCache.get('top100', function( err, value ){
           if(!err && !_.isEmpty(value)){
-            response.send(value.top100);
-            response.end();
+            res.send(value.top100);
+            res.end();
           }
           // wasn't cached or err'd when fetching from cache
           else {
-            var options = {
-                host: 'boardgamegeek.com',
-                path: '/browse/boardgame'
-            };
+            var url = 'http://boardgamegeek.com/browse/boardgame';
+            request(url, function(err, response, body){
+              if(err){ throw err; }
 
-            http.get(options, function(res) {
-              var body = '';
-              var gunzip = zlib.createGunzip();
-
-              res.pipe(gunzip);
-
-              gunzip.on('data', function (data) {
-                  body += data;
-              });
-
-              gunzip.on('end', function() {
                 var games = [];
 
                 $ = cheerio.load(body);
@@ -57,21 +45,21 @@ module.exports = function(app, request){
                   }
                 });
 
-                response.write(JSON.stringify(games));
-                response.end();
+                res.write(JSON.stringify(games));
+                res.end();
+
               });
-            });
-          }
-        });
-      }
-      catch (e){
-        res.send('500');
+            }
+          });
+        }
+        catch (e){
+          res.send('500');
+          res.end();
+          // throw new Error(e);
+        }
+      } else {
+        res.status(401).write('Unauthorized');
         res.end();
-        // throw new Error(e);
       }
-    } else {
-      res.status(401).write('Unauthorized');
-      res.end();
-    }
-  });
-};
+    });
+  };
