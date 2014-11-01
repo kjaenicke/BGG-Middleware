@@ -1,9 +1,14 @@
 var _ = require('underscore-node');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   app.get('/forumlist', function(req, res){
     //get querystring params passed in
     var id  = req.query.id || -1;
+
+    visitor.pageview("/forum-list").send();
+    visitor.event("forum-list", id).send();
 
     if(id === -1){
       res.send('500', 'Game ID not found');

@@ -1,9 +1,12 @@
 var cheerio = require('cheerio');
 var http = require('http');
 var zlib = require('zlib');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request){
   app.get('/top100', function(req, res){
+    visitor.pageview("/top100").send();
     try {
       var url = 'http://boardgamegeek.com/browse/boardgame';
       request(url, function(err, response, body){

@@ -1,8 +1,11 @@
 var ent = require('ent');
 var StringComparison = require('../utils/StringComparison');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   app.get('/featured', function(req,res){
+    visitor.pageview("/featured").send();
       request.get({
         url: 'http://boardgamegeek.com/xmlapi/game/' + 157354 + '&comments=1&stats=1'
       }, function(error, response){

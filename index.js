@@ -6,7 +6,7 @@ var parseString = require('xml2js').parseString;
 // Analytics Setup
 var ua = require('universal-analytics');
 var visitor = ua('UA-51022207-6');
-visitor.event("BGG", "Index Started").send();
+visitor.pageview("/").send();
 
 // Port Setup
 app.set('port', (process.env.PORT || 1337));

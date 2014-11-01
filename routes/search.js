@@ -1,4 +1,6 @@
 var StringComparison = require('../utils/StringComparison');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString) {
   app.get('/search', function(req, res){
@@ -6,6 +8,9 @@ module.exports = function(app, request, parseString) {
     var search             = req.query.searchTerms || '';
     var typeFilter         = req.query.filter || false;
     var limit              = req.query.limit || -1;
+
+    visitor.pageview("/search").send();
+    visitor.event("search", search).send();
 
     if(!search){
       res.send('500', 'Search parameter not found');

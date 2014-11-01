@@ -1,7 +1,10 @@
 var cheerio = require('cheerio');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request){
   app.get('/categories', function(req, res){
+    visitor.pageview("/categories").send();
       var url = 'http://boardgamegeek.com/browse/boardgamecategory';
       request(url, function(err, response, body){
         if(err){ throw err; }

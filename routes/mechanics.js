@@ -1,8 +1,11 @@
 var cheerio = require('cheerio');
 var _ = require('underscore-node');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   app.get('/mechanics', function(req, res){
+      visitor.pageview("/mechanics").send();
       var url = 'http://boardgamegeek.com/browse/boardgamemechanic';
       request(url, function(err, response, body){
         if(err){ throw err; }

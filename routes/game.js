@@ -1,11 +1,16 @@
 var ent = require('ent');
 var StringComparison = require('../utils/StringComparison');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   //simple view
   app.get('/game', function(req, res){
     //get querystring params passed in
     var id  = req.query.id || '';
+
+    visitor.pageview("/game").send();
+    visitor.event("game", id).send();
 
     if(!id){
       res.send('500', 'GameID not found');

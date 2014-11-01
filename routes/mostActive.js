@@ -1,5 +1,9 @@
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
+
 module.exports = function(app, request, parseString){
   app.get('/mostActive', function(req, res){
+    visitor.pageview("/mostActive").send();
     //get querystring params passed in
     var type  = req.query.type || 'boardgame';
     var limit = req.query.limit || -1;
