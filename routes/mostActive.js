@@ -25,9 +25,7 @@ module.exports = function(app, request, parseString){
               if (response.body !== undefined) {
                 //convert xml to json
                 parseString(response.body, function (err, data) {
-                  console.log(data);
-                  console.log(data.items);
-                  if(data.items && data.items.item){
+                  if(data !== undefined && data.items !== undefined && data.items.item !== undefined){
                     var results = data.items.item;
 
                     for(var i = 0; i < results.length; i++){
