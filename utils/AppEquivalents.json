@@ -7,7 +7,8 @@
    {
       "title":"22 Pommes",
       "id":"38499",
-      "itunes":"http://itunes.apple.com/us/app/22-apples/id426025001?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/22-apples/id426025001?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"24/7: The Game",
@@ -32,7 +33,8 @@
    {
       "title":"Alhambra",
       "id":"6249",
-      "itunes":"https://itunes.apple.com/us/app/alhambra-game/id724408296?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/alhambra-game/id724408296?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Alien Frontiers",
@@ -57,7 +59,8 @@
    {
       "title":"Bananagrams",
       "id":"27225",
-      "itunes":"http://itunes.apple.com/us/app/bananagrams/id329521810?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/bananagrams/id329521810?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Bang!",
@@ -72,7 +75,8 @@
    {
       "title":"Battle of the Sexes",
       "id":"3510",
-      "itunes":"http://itunes.apple.com/us/app/battle-of-the-sexes/id390555498?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/battle-of-the-sexes/id390555498?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"BattleCON: War of Indines",
@@ -82,12 +86,13 @@
    {
       "title":"Battleship",
       "id":"2425",
-      "itunes":"http://itunes.apple.com/us/app/battleship-for-ipad/id438314423?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/battleship-for-ipad/id438314423?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Blokus",
       "id":"2453",
-      "itunes":"http://itunes.apple.com/us/app/blokus-hd/id377471930?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/blokus-attack-block-defend!/id762630884?mt=8"
    },
    {
       "title":"Blood Bowl: Living Rulebook",
@@ -102,7 +107,8 @@
    {
       "title":"Bohnanza",
       "id":"11",
-      "itunes":"http://itunes.apple.com/us/app/bohnanza-hd/id434833999?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/bohnanza-hd/id434833999?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Boomtown",
@@ -117,7 +123,8 @@
    {
       "title":"Button Men",
       "id":"17",
-      "itunes":"http://itunes.apple.com/us/app/button-men/id334724702?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/button-men/id334724702?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Caf&eacute; International",
@@ -127,7 +134,8 @@
    {
       "title":"Callisto",
       "id":"55705",
-      "itunes":"http://itunes.apple.com/us/app/reiner-knizias-callisto/id473976192?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/reiner-knizias-callisto/id473976192?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Can't Stop",
@@ -142,12 +150,14 @@
    {
       "title":"Cartagena",
       "id":"826",
-      "itunes":"http://itunes.apple.com/us/app/cartagena1/id440528866?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/cartagena1/id440528866?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Catch the Match",
       "id":"1321",
-      "itunes":""
+      "itunes":"",
+      "invalid":true
    },
    {
       "title":"Category 5",
@@ -177,7 +187,8 @@
    {
       "title":"Chromino",
       "id":"13328",
-      "itunes":"http://itunes.apple.com/us/app/chromino/id427484006?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/chromino/id427484006?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Clara",
@@ -187,7 +198,8 @@
    {
       "title":"Clue",
       "id":"1294",
-      "itunes":"http://itunes.apple.com/us/app/clue/id315286034?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/clue/id315286034?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Collapsible D: The Final Minutes of the Titanic",
@@ -197,7 +209,8 @@
    {
       "title":"Creationary",
       "id":"41833",
-      "itunes":"http://itunes.apple.com/us/app/lego-creationary/id401267497?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/lego-creationary/id401267497?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Cyclades",
@@ -232,7 +245,8 @@
    {
       "title":"Drive",
       "id":"6137",
-      "itunes":"https://itunes.apple.com/us/app/tricky-chicken/id394279847?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/tricky-chicken/id394279847?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Dungeon Heroes",
@@ -252,12 +266,14 @@
    {
       "title":"En Garde",
       "id":"169",
-      "itunes":"http://itunes.apple.com/us/app/reiner-knizias-en-garde/id451041728?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/reiner-knizias-en-garde/id451041728?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Epigo",
       "id":"103368",
-      "itunes":"https://itunes.apple.com/us/app/id659545198?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/id659545198?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Fairy Tale",
@@ -292,7 +308,8 @@
    {
       "title":"For The Win",
       "id":"114871",
-      "itunes":"https://itunes.apple.com/us/app/id571086500?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/id571086500?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Forbidden Island",
@@ -307,7 +324,8 @@
    {
       "title":"Friday the 13th",
       "id":"17025",
-      "itunes":"http://itunes.apple.com/us/app/reiner-knizias-poison/id308372606?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/reiner-knizias-poison/id308372606?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Galaxy Trucker",
@@ -322,7 +340,8 @@
    {
       "title":"Gipsy King",
       "id":"32382",
-      "itunes":"http://itunes.apple.com/us/app/gipsy-king/id367233816?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/gipsy-king/id367233816?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Gold!",
@@ -372,7 +391,8 @@
    {
       "title":"Horse Fever",
       "id":"58110",
-      "itunes":"http://itunes.apple.com/us/app/horse-fever/id461753092?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/horse-fever/id461753092?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid":true
    },
    {
       "title":"Ingenious",
@@ -392,17 +412,19 @@
    {
       "title":"Jenga",
       "id":"2452",
-      "itunes":"http://itunes.apple.com/us/app/jenga-hd/id393106605?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/jenga/id392915994?mt=8"
    },
    {
       "title":"Jin Li",
       "id":"68743",
-      "itunes":"http://itunes.apple.com/us/app/jin-li/id365687461?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/jin-li/id365687461?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Joan of Arc",
       "id":"64",
-      "itunes":"http://itunes.apple.com/us/app/joan-of-arc-the-game/id427872257?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/joan-of-arc-the-game/id427872257?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Kahuna",
@@ -412,7 +434,8 @@
    {
       "title":"Kamon",
       "id":"28738",
-      "itunes":"http://itunes.apple.com/us/app/kamon-hd/id390383658?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/kamon-hd/id390383658?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Keltis",
@@ -432,7 +455,8 @@
    {
       "title":"Kingdom Builder",
       "id":"107529",
-      "itunes":"https://itunes.apple.com/us/app/kingdom-builder/id581197776?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/kingdom-builder/id581197776?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Kingdoms",
@@ -512,7 +536,8 @@
    {
       "title":"Mille Bornes",
       "id":"590",
-      "itunes":"http://itunes.apple.com/app/1000-bornes-hd/id440232886?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/app/1000-bornes-hd/id440232886?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Money!",
@@ -577,12 +602,14 @@
    {
       "title":"Pass the Pigs",
       "id":"2593",
-      "itunes":"http://itunes.apple.com/us/app/pass-the-pigs/id292863173?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/pass-the-pigs/id292863173?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Peloponnes",
       "id":"42910",
-      "itunes":"https://itunes.apple.com/us/app/id660360412?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/id660360412?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Penny Arcade: The Game &ndash; Gamers vs. Evil",
@@ -592,7 +619,8 @@
    {
       "title":"Pentago",
       "id":"19841",
-      "itunes":"http://itunes.apple.com/us/app/pentago/id387127735?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/pentago/id387127735?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Phantom Leader",
@@ -602,7 +630,8 @@
    {
       "title":"Pictureka!",
       "id":"22889",
-      "itunes":"http://itunes.apple.com/us/app/pictureka-for-ipad/id402349373?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/pictureka-for-ipad/id402349373?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Province",
@@ -627,12 +656,14 @@
    {
       "title":"Quarto!",
       "id":"681",
-      "itunes":"http://itunes.apple.com/us/app/iquarto/id389461794?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/iquarto/id389461794?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Quoridor",
       "id":"624",
-      "itunes":"http://itunes.apple.com/us/app/quoridor/id373966401?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/quoridor/id373966401?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Qwirkle",
@@ -702,7 +733,8 @@
    {
       "title":"Scrabble",
       "id":"320",
-      "itunes":"http://itunes.apple.com/us/app/scrabble-tile-rack/id363327037?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/scrabble-tile-rack/id363327037?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Sentinels of the Multiverse",
@@ -717,7 +749,8 @@
    {
       "title":"Sheepland",
       "id":"123576",
-      "itunes":"https://itunes.apple.com/us/app/id667872443?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/id667872443?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Small World",
@@ -732,7 +765,8 @@
    {
       "title":"Spot it!",
       "id":"63268",
-      "itunes":"https://itunes.apple.com/us/app/dobble-hd/id555322962?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/dobble-hd/id555322962?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Stalag 17",
@@ -907,12 +941,14 @@
    {
       "title":"Trivial Pursuit",
       "id":"2952",
-      "itunes":"https://itunes.apple.com/us/app/id455124417?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"https://itunes.apple.com/us/app/id455124417?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Ubongo",
       "id":"16986",
-      "itunes":"http://itunes.apple.com/us/app/ubongo/id464270175?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/ubongo/id464270175?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"UNO",
@@ -957,12 +993,14 @@
    {
       "title":"Would You Rather...?",
       "id":"677",
-      "itunes":"http://itunes.apple.com/us/app/would-you-rather-board-game/id429977366?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/would-you-rather-board-game/id429977366?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Yahtzee",
       "id":"2243",
-      "itunes":"http://itunes.apple.com/us/app/yahtzee-hd/id389191032?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/yahtzee-hd/id389191032?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Yardmaster",
@@ -982,7 +1020,8 @@
    {
       "title":"Zombie in my Pocket",
       "id":"33468",
-      "itunes":"http://itunes.apple.com/us/app/zombie-in-my-pocket/id389084186?uo=4&amp;mt=8&amp;at=10lazE"
+      "itunes":"http://itunes.apple.com/us/app/zombie-in-my-pocket/id389084186?uo=4&amp;mt=8&amp;at=10lazE",
+      "invalid": true
    },
    {
       "title":"Zombies!!!",
