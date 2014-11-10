@@ -85,7 +85,7 @@ module.exports = function(app, request, parseString){
 
   //detailed view
   app.get('/game/details', function(req,res){
-    if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
+    // if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       //get querystring params passed in
       var id  = req.query.id || '';
 
@@ -330,9 +330,9 @@ module.exports = function(app, request, parseString){
             }
         });
       }
-    } else {
-      res.status(401).write('Unauthorized');
-      res.end();
-    }
+    // } else {
+    //   res.status(401).write('Unauthorized');
+    //   res.end();
+    // }
   });
 };
