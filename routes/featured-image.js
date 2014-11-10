@@ -7,7 +7,7 @@ module.exports = function(app, request, parseString){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
     visitor.pageview("/featured-image").send();
       request.get({
-        url: 'http://boardgamegeek.com/xmlapi/game/' + 157354
+        url: 'http://boardgamegeek.com/xmlapi/game/' + 164153
       }, function(error, response){
           if(!error){
             try{
