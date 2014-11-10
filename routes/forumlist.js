@@ -1,4 +1,6 @@
 var _ = require('underscore-node');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   app.get('/forumlist', function(req, res){
@@ -12,6 +14,8 @@ module.exports = function(app, request, parseString){
         throw new Error('Empty gameID error');
       }
       else{
+        visitor.pageview("/forum-list").send();
+        visitor.event("forum-list", id).send();
         request.get({
           url: 'http://boardgamegeek.com/xmlapi2/forumlist?id=' + id + '&type=thing'
         }, function(error, response){

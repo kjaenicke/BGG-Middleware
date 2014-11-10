@@ -1,11 +1,14 @@
 var _         = require('underscore-node');
 var NodeCache = require( "node-cache" );
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 //caching shib
 var gameCache = new NodeCache();
 
 module.exports = function(app, request, parseString){
   app.get('/mostActive', function(req, res){
+    visitor.pageview("/mostActive").send();
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       //get querystring params passed in
       var type  = req.query.type || 'boardgame';
@@ -38,6 +41,7 @@ module.exports = function(app, request, parseString){
                       var results = data.items.item;
 
                       for(var i = 0; i < results.length; i++){
+
                         var game = {};
                         game.title = results[i].name[0].$.value || undefined;
 

@@ -1,10 +1,15 @@
 var _ = require('underscore-node');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   app.get('/threads', function(req, res){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
     //get querystring params passed in
     var id  = req.query.id || -1;
+
+    visitor.pageview("/threadList").send();
+    visitor.event("threadList", id).send();
 
     if(id === -1){
       res.send('500', 'Forum ID not found');

@@ -1,8 +1,11 @@
 var ent = require('ent');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   app.get('/featured/image', function(req,res){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
+    visitor.pageview("/featured-image").send();
       request.get({
         url: 'http://boardgamegeek.com/xmlapi/game/' + 157354
       }, function(error, response){

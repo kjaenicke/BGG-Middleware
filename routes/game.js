@@ -1,5 +1,7 @@
 var ent = require('ent');
 var StringComparison = require('../utils/StringComparison');
+var ua = require('universal-analytics');
+var visitor = ua('UA-51022207-6');
 
 module.exports = function(app, request, parseString){
   //simple view
@@ -7,6 +9,9 @@ module.exports = function(app, request, parseString){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       //get querystring params passed in
       var id  = req.query.id || '';
+
+      visitor.pageview("/game").send();
+      visitor.event("game", id).send();
 
       if(!id){
         res.send('500', 'GameID not found');
@@ -83,6 +88,9 @@ module.exports = function(app, request, parseString){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       //get querystring params passed in
       var id  = req.query.id || '';
+
+      visitor.pageview("/game/details").send();
+      visitor.event("gameDetails", id).send();
 
       if(!id){
         res.send('500', 'GameID not found');

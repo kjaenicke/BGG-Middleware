@@ -1,14 +1,18 @@
+<<<<<<< HEAD
 var cheerio   = require('cheerio');
 var http      = require('http');
 var zlib      = require('zlib');
 var _         = require('underscore-node');
 var NodeCache = require( "node-cache" );
+var ua        = require('universal-analytics');
+var visitor   = ua('UA-51022207-6');
 
 //caching shib
 var gameCache = new NodeCache();
 
 module.exports = function(app, request){
   app.get('/top100', function(req, res){
+    visitor.pageview("/top100").send();
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       try {
         //try to load top 100 from cache
