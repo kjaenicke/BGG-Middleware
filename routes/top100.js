@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var cheerio   = require('cheerio');
 var http      = require('http');
 var zlib      = require('zlib');
