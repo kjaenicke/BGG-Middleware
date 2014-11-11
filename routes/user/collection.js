@@ -3,6 +3,7 @@ var _           = require('underscore-node');
 var ua          = require('universal-analytics');
 var visitor     = ua('UA-51022207-6');
 var interpolate = require('interpolate');
+var async       = require('async');
 
 module.exports = function(app, request, parseString){
   app.get('/user/collection', function(req, res){
@@ -58,35 +59,65 @@ module.exports = function(app, request, parseString){
         throw new Error('Error for \'user/collection\' route: Empty username error');
       }
       else{
-          request.get({
-            url: 'http://boardgamegeek.com/xmlapi2/collection?username=' + username + additionalParams,
-          },
-          function(err, resp){
-              parseString(resp.body, function(err, data){
-                if(data){
-                  //send those bitches
-                  console.log('http://boardgamegeek.com/xmlapi2/collection?username=' + username + additionalParams);
 
-                  var collection = [];
-                  if(data.items){
-                    //build our collection from the resultset
-                    data = _.each(data.items.item, function(item){
-                      collection.push({
-                        id: item.$.objectid,
-                        name: item.name[0]._
-                      });
-                    });
+        var completeURL = 'http://boardgamegeek.com/xmlapi2/collection?username=' + username + additionalParams;
+        var statusCode = 202;
+        var retryCount = 0;
+
+        async.until(
+            function () { return statusCode === 200 || statusCode === 10; },
+            function (callback) {
+                /* increment retry count, don't wan't a SO */
+                retryCount++;
+                setTimeout(callback, 100);
+
+                /* call our getUserCollection function async */
+                getUsersCollection(completeURL, function(code, collection){
+                  if(code === 200 && !_.isUndefined(collection)){
+                    res.write(collection);
+                    res.end();
+                    statusCode = 200;
                   }
-
-                  res.write(JSON.stringify(collection));
+                });
+            },
+            function (err) {
+                if(statusCode === 202){
+                  res.status('500').write('Unable to fetch user\'s collection!');
                   res.end();
                 }
-              });
-        });
+            }
+        );
       }
     } else {
       res.status(401).write('Unauthorized');
       res.end();
     }
   });
+
+  function getUsersCollection(url, callback){
+      request.get({
+        url: url
+      },
+      function(err, resp){
+        parseString(resp.body, function(err, data){
+          if(data && !err && resp.statusCode !== 202){
+            var collection = [];
+            if(data.items){
+              //build our collection from the resultset
+              data = _.each(data.items.item, function(item){
+                collection.push({
+                  id: item.$.objectid,
+                  name: item.name[0]._
+                });
+              });
+            }
+
+            callback(resp.statusCode, JSON.stringify(collection));
+          }
+          else {
+            callback(resp.statusCode, undefined);
+          }
+      });
+    });
+  }
 };
