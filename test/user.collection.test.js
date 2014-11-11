@@ -1,11 +1,16 @@
 var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
+var app      = require('../app');
+var server, portNum, baseURL;
 
-var baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:1337' : 'http://bgg-middleware.azurewebsites.net';
+before(function(){
+  portNum = Math.floor((Math.random() * 3000) + 1) + 1024;
+  baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:' + portNum : 'http://bgg-middleware.azurewebsites.net';
+  server = app.listen(portNum);
+});
 
 describe('getting test users\'s collection', function(){
-
   describe('get unfiltered collection', function(){
 
     it('should return an array of games', function(done){
@@ -94,6 +99,10 @@ describe('getting test users\'s collection', function(){
       });
     });
 
+  });
+
+  after(function(){
+    server.close();
   });
 
 });

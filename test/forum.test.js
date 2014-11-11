@@ -3,10 +3,16 @@ var request  = require("request");
 var should   = require("should");
 var auth     = require("../utils/AuthToken");
 
-var baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:1337' : 'http://bgg-middleware.azurewebsites.net';
+var app        = require('../app');
+var server, portNum, baseURL;
+
+before(function(){
+  portNum = Math.floor((Math.random() * 3000) + 1) + 1024;
+  baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:' + portNum : 'http://bgg-middleware.azurewebsites.net';
+  server = app.listen(portNum);
+});
 
 describe('getting forum list', function(){
-
   describe('get forum list for game', function(){
         it('should return list of forums', function(done){
           request.get({
@@ -91,4 +97,9 @@ describe('getting forum list', function(){
           });
       });
     });
+
+  after(function(){
+    server.close();
+  });
+
 });

@@ -1,11 +1,16 @@
-var assert   = require("assert");
-var request  = require("request");
-var should   = require("should");
+var assert     = require("assert");
+var request    = require("request");
+var should     = require("should");
+var app        = require('../app');
+var server, portNum, baseURL;
 
-var baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:1337' : 'http://bgg-middleware-stage.azurewebsites.net';
+before(function(){
+  portNum = Math.floor((Math.random() * 3000) + 1) + 1024;
+  baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:' + portNum : 'http://bgg-middleware.azurewebsites.net';
+  server = app.listen(portNum);
+});
 
 describe('getting app equivalents', function(){
-
   describe('get apps', function(){
 
     it('should return a set of apps with iTunes equivalents', function(done){
@@ -21,4 +26,9 @@ describe('getting app equivalents', function(){
       });
     });
   });
+
+  after(function(){
+    server.close();
+  });
+
 });
