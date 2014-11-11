@@ -25,7 +25,7 @@ module.exports = function(app, request){
           else {
             var url = 'http://boardgamegeek.com/browse/boardgame';
             request(url, function(err, response, body){
-              //If request fails, we just send our fallback 
+              //If request fails, we just send our fallback
               if(err){
                 res.write(JSON.stringify(fallback));
                 res.end();
@@ -46,12 +46,14 @@ module.exports = function(app, request){
                 }
               });
 
-              //cache for 1 day
-              gameCache.set('top100', JSON.stringify(games), 86400, function( err, success ){
-                if( !err && success ){
-                  console.log('Top 100 Games Cached...');
-                }
-              });
+              //cache && only if we have 100 results (so we don't cache garbage results)
+              if(games.length === 100){
+                gameCache.set('top100', JSON.stringify(games), 86400, function( err, success ){
+                  if( !err && success ){
+                    console.log('Top 100 Games Cached...');
+                  }
+                });
+              }
 
               res.write(JSON.stringify(games));
               res.end();
