@@ -3,10 +3,16 @@ var request  = require("request");
 var should   = require("should");
 var auth     = require("../utils/AuthToken");
 
-var baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:1337' : 'http://bgg-middleware.azurewebsites.net';
+var app        = require('../app');
+var server, portNum, baseURL;
+
+before(function(){
+  portNum = Math.floor((Math.random() * 3000) + 1) + 1024;
+  baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:' + portNum : 'http://bgg-middleware.azurewebsites.net';
+  server = app.listen(portNum);
+});
 
 describe('getting most active games', function(){
-
   describe('get top 50 most active boardgames', function(){
     it('should return 50 games w/type of boardgame', function(done){
       request.get({
@@ -40,4 +46,9 @@ describe('getting most active games', function(){
       });
     });
   });
+
+  after(function(){
+    server.close();
+  });
+
 });
