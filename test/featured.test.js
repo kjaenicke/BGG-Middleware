@@ -1,6 +1,7 @@
 var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
+var auth     = require("../utils/AuthToken");
 
 var baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:1337' : 'http://bgg-middleware.azurewebsites.net';
 
@@ -8,7 +9,12 @@ describe('getting featured boardgame', function(){
 
   describe('get featured game object', function(){
     it('should return a valid game object', function(done){
-      request.get({ url: baseURL + '/featured' },
+      request.get({
+        url: baseURL + '/featured',
+        headers: {
+          'auth-token': auth.token
+        }
+      },
       function (err, res) {
         if(err) { throw err; }
         payload = JSON.parse(res.body);
@@ -20,7 +26,12 @@ describe('getting featured boardgame', function(){
 
   describe('get featured game image', function(){
     it('should return a valid game image URL', function(done){
-      request.get({ url: baseURL + '/featured/image' },
+      request.get({
+        url: baseURL + '/featured/image',
+        headers: {
+          'auth-token': auth.token
+        }
+      },
       function (err, res) {
         if(err) { throw err; }
         payload = JSON.parse(res.body);

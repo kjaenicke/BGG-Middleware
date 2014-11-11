@@ -9,7 +9,9 @@ describe('getting app equivalents', function(){
   describe('get apps', function(){
 
     it('should return a set of apps with iTunes equivalents', function(done){
-      request.get({ url: baseURL + '/apps' },
+      request.get({
+        url: baseURL + '/apps'
+      },
         function (err, res) {
           if(err) { throw err; }
           payload = JSON.parse(res.body);
