@@ -65,7 +65,7 @@ module.exports = function(app, request, parseString){
         var retryCount = 0;
 
         async.until(
-            function () { return statusCode === 200 || statusCode === 10; },
+            function () { return statusCode === 200 || retryCount === 10; },
             function (callback) {
                 /* increment retry count, don't wan't a SO */
                 retryCount++;
