@@ -5,6 +5,7 @@ var _         = require('underscore-node');
 var NodeCache = require( "node-cache" );
 var ua        = require('universal-analytics');
 var visitor   = ua('UA-51022207-6');
+var fallback  = require('../data/top100.json');
 
 //caching shib
 var gameCache = new NodeCache();
@@ -24,7 +25,11 @@ module.exports = function(app, request){
           else {
             var url = 'http://boardgamegeek.com/browse/boardgame';
             request(url, function(err, response, body){
-              if(err){ throw err; }
+              //If request fails, we just send our fallback 
+              if(err){
+                res.write(JSON.stringify(fallback));
+                res.end();
+              }
 
               var games = [];
 
@@ -58,7 +63,6 @@ module.exports = function(app, request){
       catch (e){
         res.send('500');
         res.end();
-        // throw new Error(e);
       }
     } else {
       res.status(401).write('Unauthorized');

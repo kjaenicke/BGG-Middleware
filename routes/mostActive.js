@@ -1,7 +1,8 @@
 var _         = require('underscore-node');
 var NodeCache = require( "node-cache" );
-var ua = require('universal-analytics');
-var visitor = ua('UA-51022207-6');
+var ua        = require('universal-analytics');
+var visitor   = ua('UA-51022207-6');
+var fallback  = require('../data/mostActive.json');
 
 //caching shib
 var gameCache = new NodeCache();
@@ -88,9 +89,8 @@ module.exports = function(app, request, parseString){
                 }
               }
               else{
-                res.send('500');
+                res.write(JSON.stringify(fallback));
                 res.end();
-                throw new Error(error);
               }
             });
           }
