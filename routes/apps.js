@@ -1,4 +1,4 @@
-var json = require('../utils/AppEquivalents.json');
+var json = require('../data/appEquivalents.json');
 
 module.exports = function(app, request){
   app.get('/apps', function(req, res){
