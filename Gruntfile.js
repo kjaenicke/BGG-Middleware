@@ -12,7 +12,7 @@ module.exports = function(grunt) {
           timeout: 10000
         },
         src: [
-        //'test/**/*.test.js',
+        'test/**/*.test.js',
         'test/**/user.*.test.js'
         ]
       }
