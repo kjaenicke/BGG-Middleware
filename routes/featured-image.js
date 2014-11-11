@@ -1,7 +1,7 @@
 //libs
-var ent = require('ent');
-var ua = require('universal-analytics');
-var visitor = ua('UA-51022207-6');
+var ent       = require('ent');
+var ua        = require('universal-analytics');
+var visitor   = ua('UA-51022207-6');
 var NodeCache = require( "node-cache" );
 var _         = require('underscore-node');
 //caching shib
