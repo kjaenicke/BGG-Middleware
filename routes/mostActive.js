@@ -71,12 +71,14 @@ module.exports = function(app, request, parseString){
 
                     }
 
-                    //cache for .5 days
-                    gameCache.set('hot50', JSON.stringify(games), 43200, function( err, success ){
-                      if( !err && success ){
-                        console.log('Hot 50 Games Cached...');
-                      }
-                    });
+                    //cache && only if we have 100 results (so we don't cache garbage results)
+                    if(games.length === 50){
+                      gameCache.set('hot50', JSON.stringify(games), 43200, function( err, success ){
+                        if( !err && success ){
+                          console.log('Hot 50 Games Cached...');
+                        }
+                      });
+                    }
 
                     res.write(JSON.stringify(games));
                     res.end();
