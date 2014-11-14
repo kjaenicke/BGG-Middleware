@@ -7,9 +7,8 @@ module.exports = function(app, request, parseString){
   app.get('/user/plays', function(req, res){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
     //analytics
-    //visitor.pageview("/thread").send();
-    //visitor.event("thread", id).send();
-    
+    visitor.pageview("/user/plays").send();
+
     //get querystring params passed in
     var username  = req.query.user || undefined;
     var id = req.query.id || -1;

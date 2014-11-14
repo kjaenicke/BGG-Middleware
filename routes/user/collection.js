@@ -9,7 +9,7 @@ module.exports = function(app, request, parseString){
   app.get('/user/collection', function(req, res){
     if (process.env.NODE_ENV !== "production" || req.get('auth-token')===process.env.AUTH_TOKEN){
       // analytics
-      // visitor.pageview("/user/collection").send();
+      visitor.pageview("/user/collection").send();
 
       //get querystring params passed in
       var username  = req.query.user || undefined;
