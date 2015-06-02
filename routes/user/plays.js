@@ -57,9 +57,16 @@ module.exports = function(app, request, parseString){
                       });
                     });
                   }
+                  
+                  var resultObj = {
+                    totalResults: totalNumberOfPlays,
+                    plays: playsCollection,
+                    username: username,
+                    userId: data.plays.$.userid
+                  };
     
                   //send those bitches
-                  res.write(JSON.stringify(playsCollection));
+                  res.write(JSON.stringify(resultObj));
                   res.end();
                 }
                 //multi-page
