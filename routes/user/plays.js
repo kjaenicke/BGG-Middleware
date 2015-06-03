@@ -90,12 +90,12 @@ module.exports = function(app, request, parseString){
                         _.each(aggregatedPlays, function (play) {
                           if (!plays.hasOwnProperty(play.item[0].$.objectid)) {
                             plays[play.item[0].$.objectid] = {
-                              count: 1,
+                              count: parseInt(play.$.quantity, 10),
                               name: play.item[0].$.name
                             };
                           }
                           else {
-                            plays[play.item[0].$.objectid].count++;
+                            plays[play.item[0].$.objectid].count += parseInt(play.$.quantity, 10);
                           }
                         });
     
