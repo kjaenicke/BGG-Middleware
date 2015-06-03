@@ -318,15 +318,14 @@ module.exports = function(app, request, parseString){
                 });
               }
               catch (err){
-                res.send('500', err);
+                res.status('500').send(err);
                 res.end();
                 throw new Error(err);
               }
             }
             else{
-              res.send('500', e);
+              res.status('500').send(error);
               res.end();
-              throw new Error(error);
             }
         });
       }

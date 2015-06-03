@@ -18,8 +18,9 @@ describe('getting test users\'s plays', function(){
       function (err, res) {
         if(err) { throw err; }
         payload = JSON.parse(res.body);
-        payload.should.be.instanceOf(Array);
-        payload.length.should.be.above(0);
+        payload.should.be.instanceOf(Object);
+        payload.plays.should.be.instanceOf(Array);
+        payload.plays.length.should.be.above(0);
         done();
       });
     });
