@@ -25,6 +25,7 @@ module.exports = function(app, request, parseString){
             parseString(resp.body, function(err, data){
               if(data){
                 var plays = {};
+                var totalPlays = 0;
                 var playsCollection = [];
                 
                 //check to see if we have to queue up a paged approach
@@ -44,8 +45,10 @@ module.exports = function(app, request, parseString){
                         };
                       }
                       else {
-                        plays[play.item[0].$.objectid].count++;
+                        plays[play.item[0].$.objectid].count += parseInt(play.$.quantity, 10);
                       }
+                      
+                      totalPlays += parseInt(play.$.quantity, 10);
                     });
 
                     //convert intermediate hastable to array for response paylod
@@ -97,6 +100,8 @@ module.exports = function(app, request, parseString){
                           else {
                             plays[play.item[0].$.objectid].count += parseInt(play.$.quantity, 10);
                           }
+                          
+                          totalPlays += parseInt(play.$.quantity, 10);
                         });
     
                         //convert intermediate hastable to array for response paylod
@@ -109,7 +114,7 @@ module.exports = function(app, request, parseString){
                         });
                         
                         var resultObj = {
-                          totalResults: totalNumberOfPlays,
+                          totalResults: totalPlays,
                           plays: playsCollection,
                           username: username,
                           userId: data.plays.$.userid
