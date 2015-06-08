@@ -21,20 +21,24 @@ module.exports = function(app, request){
           var oneDay = 1000 * 60 * 60 * 24;
           var day = Math.floor(diff / oneDay);
 
-          //cache the announcements
-          dailyGameCache.set('game', json[day], 86400, function( err, success ){
-            if( !err && success ){
-              console.log('Daily Game Cached...');
+          request.get({
+            url: 'http://bgg-middleware.herokuapp.com/game/details?id=' + json[day].id
+          }, function(error, response){
+            //cache the announcements
+            dailyGameCache.set('game', response.body, 86400, function( err, success ){
+              if( !err && success ){
+                console.log('Daily Game Cached...');
+              }
+            });
+
+            if (json){
+              res.write(response.body);
+              res.end();
+            } else {
+              res.status(500).send('Invalid JSON payload');
+              res.end();
             }
           });
-
-          if (json){
-            res.write(JSON.stringify(json[day]));
-            res.end();
-          } else {
-            res.status(500).send('Invalid JSON payload');
-            res.end();
-          }
         }
       });
     }
