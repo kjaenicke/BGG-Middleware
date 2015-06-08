@@ -4,7 +4,7 @@
   "description": "BGG API Wrapper",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index",
+    "start": "node index",
     "test": "grunt --verbose"
   },
   "dependencies": {
