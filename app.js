@@ -47,4 +47,6 @@ require('./routes/apps')(app, request);
 require('./routes/featured/game')(app, request);
 //USER SPECIFIC ROUTES
 require('./routes/user/collection')(app, request, parseString);
-require('./routes/user/plays')(app, request, parseString);
+require('./routes/user/playsCollection')(app, request, parseString);
+require('./routes/user/recentPlays')(app, request, parseString);
+require('./routes/user/playDetails')(app, request, parseString);

@@ -16,8 +16,12 @@ module.exports = function(app, request, parseString){
         res.end();
       }
       else {
+        var sixMonthsAgo = new Date();
+        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 1);
+        var dateString = sixMonthsAgo.toISOString().slice(0,10).replace(/-/g,"-");
+
         request.get({
-          url: 'http://boardgamegeek.com/xmlapi2/plays?username=' + username.toUpperCase()
+          url: 'http://boardgamegeek.com/xmlapi2/plays?mindate=' + dateString + '&username=' + username
         }, function(err, resp){
           try {
             parseString(resp.body, function(err, data){
