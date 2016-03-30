@@ -1,5 +1,5 @@
-var ent = require('ent');
 var StringComparison = require('../utils/StringComparison');
+var ConvertHTMLtoString = require('../utils/ConvertHTMLtoString');
 var ua = require('universal-analytics');
 var visitor = ua('UA-51022207-6');
 
@@ -44,7 +44,7 @@ module.exports = function(app, request, parseString){
                     }
 
                     //game description
-                    game.description = ent.decode(data.description[0].replace(/(<([^>]+)>)/ig,""));
+                    game.description = ConvertHTMLtoString(data.description[0]);
 
                     //URL for game's image
                     if(data.thumbnail){
@@ -126,7 +126,7 @@ module.exports = function(app, request, parseString){
 
                     //game description
                     if(data.description){
-                      game.description = data.description[0];
+                      game.description = ConvertHTMLtoString(data.description[0]);
                     }
 
                     //year published

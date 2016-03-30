@@ -1,6 +1,7 @@
 var _ = require('underscore-node');
 var ua = require('universal-analytics');
 var visitor = ua('UA-51022207-6');
+var ConvertHTMLtoString = require('../utils/ConvertHTMLtoString');
 
 module.exports = function(app, request, parseString){
   app.get('/thread', function(req, res){
@@ -37,7 +38,7 @@ module.exports = function(app, request, parseString){
                       link: a.$.link,
                       postDate: a.$.postdate,
                       subject: a.subject[0],
-                      body: a.body[0]
+                      body: ConvertHTMLtoString(a.body[0])
                     });
                 });
 
