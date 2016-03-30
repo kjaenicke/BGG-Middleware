@@ -1,17 +1,13 @@
 var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
-var auth     = require("../utils/AuthToken");
-var app      = require('../app');
-var baseURL  = require('./baseURL');
+var TestUtils = require('../utils/TestUtils');
 
-describe('getting annoucements', function(){    
+describe('getting annoucements', function(){
     it('should return a set of annnouncements', function(done){
       request.get({
-        url: baseURL + '/announcements',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/announcements',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }

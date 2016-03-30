@@ -1,18 +1,14 @@
 var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
-var auth     = require("../utils/AuthToken");
-var app      = require('../app');
-var baseURL  = require('./baseURL');
+var TestUtils = require('../utils/TestUtils');
 
 describe('getting featured boardgame', function(){
   describe('get featured game object', function(){
     it('should return a valid game object', function(done){
       request.get({
-        url: baseURL + '/featured',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/featured',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }
@@ -26,10 +22,8 @@ describe('getting featured boardgame', function(){
   describe('get featured game image', function(){
     it('should return a valid game image URL', function(done){
       request.get({
-        url: baseURL + '/featured/image',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/featured/image',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }

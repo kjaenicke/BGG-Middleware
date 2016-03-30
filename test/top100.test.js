@@ -1,18 +1,14 @@
 var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
-var auth     = require("../utils/AuthToken");
-var app      = require('../app');
-var baseURL  = require('./baseURL');
+var TestUtils = require("../utils/TestUtils");
 
 describe('getting top 100 boardgames', function(){
   describe('get collection of 100 game objects', function(){
     it('should return collection of games', function(done){
       request.get({
-        url: baseURL + '/top100',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/top100',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }
@@ -24,10 +20,8 @@ describe('getting top 100 boardgames', function(){
 
     it('should return the thumbnail for the first image', function(){
       request.get({
-        url: baseURL + '/top100',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/top100',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }

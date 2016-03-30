@@ -1,18 +1,14 @@
 var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
-var auth     = require("../utils/AuthToken");
-var app      = require('../app');
-var baseURL  = require('./baseURL');
+var TestUtils = require("../utils/TestUtils");
 
 //BASIC GAME ROUTE
 describe('getting a games images', function(){
   it('should return multiple images', function(done){
     request.get({
-      url: baseURL + '/gameImages?id=157354',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/gameImages?id=157354',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err) { throw err; }
@@ -24,10 +20,8 @@ describe('getting a games images', function(){
 
   it('should return valid image urls', function(done){
     request.get({
-      url: baseURL + '/gameImages?id=157354',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/gameImages?id=157354',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err) { throw err; }

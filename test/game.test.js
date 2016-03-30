@@ -1,19 +1,15 @@
 var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
-var auth     = require("../utils/AuthToken");
-var app      = require('../app');
-var baseURL  = require('./baseURL');
+var TestUtils = require("../utils/TestUtils");
 
 //BASIC GAME ROUTE
 describe('getting basic game', function(){
   describe('get game\'s id', function(){
     it('should return a gameID', function(done){
       request.get({
-        url: baseURL + '/game?id=9209',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/game?id=9209',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }
@@ -27,10 +23,8 @@ describe('getting basic game', function(){
   describe('get game\'s title', function(){
     it('should return a title', function(done){
       request.get({
-        url: baseURL + '/game?id=9209',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/game?id=9209',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }
@@ -44,10 +38,9 @@ describe('getting basic game', function(){
   describe('get game\'s thumbURL', function(){
     it('should return a thumbURL', function(done){
       request.get({
-        url: baseURL + '/game?id=9209',
-        headers: {
-          'auth-token': auth.token
-        } },
+        url: TestUtils.baseURL + '/game?id=9209',
+        headers: TestUtils.headers()
+        },
         function (err, res) {
           if(err) { throw err; }
             payload = JSON.parse(res.body);
@@ -60,10 +53,8 @@ describe('getting basic game', function(){
   describe('get game\'s title', function(){
     it('should return a title', function(done){
       request.get({
-        url: baseURL + '/game?id=9209',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/game?id=9209',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }
@@ -80,10 +71,8 @@ describe('getting game details', function(){
   describe('get game\'s id', function(){
     it('should return a gameID', function(done){
       request.get({
-        url: baseURL + '/game/details?id=9209',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/game/details?id=9209',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err) { throw err; }
@@ -97,10 +86,8 @@ describe('getting game details', function(){
   describe('get game title', function(){
     it('should return the game\'s title', function(done){
       request.get({
-        url: baseURL + '/game/details?id=9209',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/game/details?id=9209',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err){ throw err; }
@@ -114,10 +101,8 @@ describe('getting game details', function(){
   describe('get game description', function(){
     it('should return the game\'s description', function(done){
       request.get({
-        url: baseURL + '/game/details?id=9209',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/game/details?id=9209',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err){ throw err; }
@@ -131,10 +116,8 @@ describe('getting game details', function(){
   describe('get game comments', function(){
     it('should return the game\'s comments [25]', function(done){
       request.get({
-        url: baseURL + '/game/details?id=9209',
-        headers: {
-          'auth-token': auth.token
-        }
+        url: TestUtils.baseURL + '/game/details?id=9209',
+        headers: TestUtils.headers()
       },
       function (err, res) {
         if(err){ throw err; }
@@ -150,10 +133,8 @@ describe('getting game details', function(){
 describe('get game rating', function(){
   it('should return the game\'s rating', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -169,10 +150,8 @@ describe('get game rating', function(){
 describe('get game yearPublished', function(){
   it('should return the game\'s year published', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -186,10 +165,8 @@ describe('get game yearPublished', function(){
 describe('get game minPlayers', function(){
   it('should return the game\'s minPlayers', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -203,10 +180,8 @@ describe('get game minPlayers', function(){
 describe('get game maxPlayers', function(){
   it('should return the game\'s maxPlayers', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -220,10 +195,8 @@ describe('get game maxPlayers', function(){
 describe('get game playingTime', function(){
   it('should return the game\'s playingTime', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -237,10 +210,8 @@ describe('get game playingTime', function(){
 describe('get game minAge', function(){
   it('should return the game\'s minAge', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -254,10 +225,8 @@ describe('get game minAge', function(){
 describe('get game publisher', function(){
   it('should return the game\'s publisher', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -271,10 +240,8 @@ describe('get game publisher', function(){
 describe('get game thumbURL', function(){
   it('should return the game\'s thumbURL', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
@@ -289,10 +256,8 @@ describe('get game thumbURL', function(){
 describe('get game overall ranking', function(){
   it('should return the game\'s overall rank', function(done){
     request.get({
-      url: baseURL + '/game/details?id=9209',
-      headers: {
-        'auth-token': auth.token
-      }
+      url: TestUtils.baseURL + '/game/details?id=9209',
+      headers: TestUtils.headers()
     },
     function (err, res) {
       if(err){ throw err; }
