@@ -3,18 +3,9 @@ var request  = require("request");
 var should   = require("should");
 var auth     = require("../utils/AuthToken");
 var app      = require('../app');
-var server, portNum, baseURL;
+var baseURL  = require('./baseURL');
 
-before(function(){
-  portNum = Math.floor((Math.random() * 3000) + 1) + 1024;
-  baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:' + portNum : 'http://bgg-middleware.azurewebsites.net';
-  server = app.listen(portNum);
-});
-
-describe('getting annoucements', function(){
-  describe('get announcements', function(){
-    console.log('Running on port: ' + portNum);
-
+describe('getting annoucements', function(){    
     it('should return a set of annnouncements', function(done){
       request.get({
         url: baseURL + '/announcements',
@@ -30,10 +21,4 @@ describe('getting annoucements', function(){
         done();
       });
     });
-  });
-
-after(function(){
-  server.close();
-});
-
 });

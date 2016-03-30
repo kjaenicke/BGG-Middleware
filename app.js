@@ -7,7 +7,8 @@ var cors = require('cors');
 var whitelist = [
   "http://bgg-middleware.azurewebsites.net",
   "http://bgg-middleware-staging.azurewebsites.net",
-  "http://bgg-middleware-stage.azurewebsites.net"
+  "http://bgg-middleware-stage.azurewebsites.net",
+  "http://bgg-middleware.herokuapp.com"
 ];
 var corsOptions = {
   origin: function(origin, callback){

@@ -12,7 +12,8 @@ module.exports = function(grunt) {
           timeout: 50000
         },
         src: [
-        'test/**/*.test.js',
+        // 'test/**/*.test.js',
+        'test/**/announcements.test.js',
         '!test/**/user.*.test.js'
         ]
       }

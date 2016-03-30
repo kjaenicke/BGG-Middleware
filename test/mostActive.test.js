@@ -2,15 +2,8 @@ var assert   = require("assert");
 var request  = require("request");
 var should   = require("should");
 var auth     = require("../utils/AuthToken");
-
-var app        = require('../app');
-var server, portNum, baseURL;
-
-before(function(){
-  portNum = Math.floor((Math.random() * 3000) + 1) + 1024;
-  baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:' + portNum : 'http://bgg-middleware.azurewebsites.net';
-  server = app.listen(portNum);
-});
+var app      = require('../app');
+var baseURL  = require('./baseURL');
 
 describe('getting most active games', function(){
   describe('get top 50 most active boardgames', function(){
@@ -33,7 +26,7 @@ describe('getting most active games', function(){
   describe('get top 50 most active videogames', function(){
     it('should return 50 games w/type of videogame', function(done){
       request.get({
-        url: baseURL + '/mostActive?type=\'videogame\'',
+        url: baseURL + '/mostActive?type=\'boardgame\'',
         headers: {
           'auth-token': auth.token
         }
@@ -47,8 +40,21 @@ describe('getting most active games', function(){
     });
   });
 
-  after(function(){
-    server.close();
+  describe('get top 50 most active videogames', function(){
+    it('should return the thumbnail of the first image', function(done){
+      request.get({
+        url: baseURL + '/mostActive',
+        headers: {
+          'auth-token': auth.token
+        }
+      },
+      function (err, res) {
+        if(err) { throw err; }
+        payload = JSON.parse(res.body);
+        payload[0].thumbnail.should.be.instanceOf(String);
+        done();
+      });
+    });
   });
 
 });
