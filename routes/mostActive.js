@@ -42,8 +42,12 @@ module.exports = function(app, request, parseString){
                       var results = data.items.item;
 
                       for(var i = 0; i < results.length; i++){
-
                         var game = {};
+
+                        if(i === 0){
+                          game.thumbnail = 'http:' + results[i].thumbnail[0].$.value || undefined;
+                        }
+
                         game.title = results[i].name[0].$.value || undefined;
 
                         // Year published

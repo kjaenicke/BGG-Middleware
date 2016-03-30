@@ -34,15 +34,26 @@ module.exports = function(app, request){
               var games = [];
 
               $ = cheerio.load(body);
+
               $('#collectionitems tr td.collection_objectname a').each(function(index, gameLink){
                 if($(gameLink).attr('href')){
                   var idUrl = $(gameLink).attr('href');
                   var id = parseInt(idUrl.substring(11, idUrl.lastIndexOf('/')), 10);
 
-                  games.push({
+                  var game = {
                     id: id,
                     name: $(gameLink).text()
-                  });
+                  };
+
+                  //Grab the game image for the first game only
+                  if(index === 0){
+                    var thumbnailCell = $(gameLink).parent().parent().parent().find('.collection_thumbnail');
+                    var thumbnailSrc = $(thumbnailCell).find('img').attr('src');
+
+                    game.thumbnail = 'http:' + thumbnailSrc;
+                  }
+
+                  games.push(game);
                 }
               });
 
