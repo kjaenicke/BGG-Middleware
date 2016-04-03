@@ -46,6 +46,7 @@ module.exports = function(app, request, parseString){
 
                         if(i === 0){
                           game.thumbnail = 'http:' + results[i].thumbnail[0].$.value || undefined;
+                          game.thumbnail = game.thumbnail.replace('_t', '');
                         }
 
                         game.title = results[i].name[0].$.value || undefined;

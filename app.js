@@ -42,7 +42,7 @@ require('./routes/mechanics')(app, request, parseString);
 require('./routes/categories')(app, request);
 require('./routes/featured')(app, request, parseString);
 require('./routes/featured-image')(app, request, parseString);
-require('./routes/top100')(app, request);
+require('./routes/top100')(app, request, parseString);
 require('./routes/announcements')(app, request);
 require('./routes/apps')(app, request);
 require('./routes/featured/game')(app, request);
