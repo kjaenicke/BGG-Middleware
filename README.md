@@ -2,3 +2,8 @@ BGG-Middleware [![Build Status](https://travis-ci.org/kjaenicke/BGG-Middleware.p
 ==============
 
 Middleware for BGG API
+
+```
+npm install
+node index.js
+```
